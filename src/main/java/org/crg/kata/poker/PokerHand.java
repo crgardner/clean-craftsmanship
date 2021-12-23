@@ -24,6 +24,14 @@ public class PokerHand {
             return Result.LOSE;
         }
 
+        if (isTwoPair() && !secondHand.isTwoPair()) {
+            return Result.WIN;
+        }
+
+        if (isTwoPair() && secondHand.isTwoPair()) {
+            return determinePairResult(secondHand);
+        }
+
         if (isOnePair() && !secondHand.isOnePair()) {
             return Result.WIN;
         }
@@ -31,17 +39,71 @@ public class PokerHand {
         return determineResult(secondHand, 4);
     }
 
+    private Result determinePairResult(PokerHand secondHand) {
+//        if (highestPair() > secondHand.highestPair()) {
+//            return Result.WIN;
+//        }
+
+//        if (highestPair() < secondHand.highestPair()) {
+//            return Result.LOSE;
+//        }
+
+        if (lowestPair() > secondHand.lowestPair()) {
+            return Result.WIN;
+        }
+
+        if (lowestPair() < secondHand.lowestPair()) {
+            return Result.LOSE;
+        }
+
+        return determineResult(secondHand, 4);
+
+    }
+
+    private Integer lowestPair() {
+        var cardCounts = Arrays.stream(numericHandValue).boxed()
+                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+
+        var pair = cardCounts.entrySet().stream().filter(e -> e.getValue().equals(2L)).findFirst().map(Map.Entry::getKey);
+
+
+        return pair.orElse(-1);
+    }
+
+//    private Integer highestPair() {
+//        var cardCounts = Arrays.stream(numericHandValue).boxed()
+//                                            .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+//
+//
+//        var pair = cardCounts.entrySet().stream().filter(e -> e.getValue().equals(2L)).map(Map.Entry::getKey)
+//                .sorted(Comparator.reverseOrder())
+//                             .findFirst();
+//
+//
+//        return pair.get();
+//    }
+
     private boolean isStraight() {
         return IntStream.range(0, numericHandValue.length - 1)
                         .map(i -> numericHandValue[i] - numericHandValue[i + 1])
                         .allMatch(d -> d == -1);
     }
 
-    private boolean isOnePair() {
-        var cardCounts = Arrays.stream(numericHandValue).boxed()
-                                                .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+    private boolean isTwoPair() {
+        return hasPairs(2);
 
-        return cardCounts.values().stream().filter(c -> c.equals(2L)).count() == 1;
+    }
+
+    private boolean isOnePair() {
+        return hasPairs(1);
+    }
+
+    private boolean hasPairs(int pairCount) {
+        var cardCounts = Arrays.stream(numericHandValue).boxed()
+                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+        return cardCounts.values().stream().filter(c -> c.equals(2L)).count() == pairCount;
     }
 
     private Result determineResult(PokerHand secondHand, int topCardPosition) {
