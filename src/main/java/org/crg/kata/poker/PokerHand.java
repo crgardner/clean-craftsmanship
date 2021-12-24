@@ -40,14 +40,6 @@ public class PokerHand {
     }
 
     private Result determinePairResult(PokerHand secondHand) {
-//        if (highestPair() > secondHand.highestPair()) {
-//            return Result.WIN;
-//        }
-
-//        if (highestPair() < secondHand.highestPair()) {
-//            return Result.LOSE;
-//        }
-
         if (lowestPair() > secondHand.lowestPair()) {
             return Result.WIN;
         }
@@ -70,19 +62,6 @@ public class PokerHand {
 
         return pair.orElse(-1);
     }
-
-//    private Integer highestPair() {
-//        var cardCounts = Arrays.stream(numericHandValue).boxed()
-//                                            .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-//
-//
-//        var pair = cardCounts.entrySet().stream().filter(e -> e.getValue().equals(2L)).map(Map.Entry::getKey)
-//                .sorted(Comparator.reverseOrder())
-//                             .findFirst();
-//
-//
-//        return pair.get();
-//    }
 
     private boolean isStraight() {
         return IntStream.range(0, numericHandValue.length - 1)
