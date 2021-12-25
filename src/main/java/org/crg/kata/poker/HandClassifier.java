@@ -13,7 +13,7 @@ class StraightHandClassifier implements HandClassifier {
     @Override
     public HandClassification classify(int[] cardValues) {
         if (isStraight(cardValues)) {
-            return new StraightHand(cardValues);
+            return new StraightHandClassification(cardValues);
         }
         return nextClassifier.classify(cardValues);
     }

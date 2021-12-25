@@ -111,8 +111,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats same ranked two pair hand with same high pair but lower ranked low pair")
-        void beatsSameRankedTwoPairHandWithSameHighPairButLowerRankedLowPair() {
+        @DisplayName("beats two pair hand with same high pair but lower ranked low pair")
+        void beatsTwoPairHandWithSameHighPairButLowerRankedLowPair() {
             firstHand = new PokerHand("3C 3D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 6H");
 
@@ -130,6 +130,17 @@ class PokerHandTest {
             var result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("loses to higher ranked two pair hand")
+        void losesToHigherRankedTwoPairHand() {
+            firstHand = new PokerHand("2C 2D 5C 5D 7C");
+            secondHand = new PokerHand("3H 3S 5H 5S 7H");
+
+            var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
         }
 
         @Test
@@ -166,6 +177,7 @@ class PokerHandTest {
         }
 
 
+
     }
 
     @Nested
@@ -180,6 +192,17 @@ class PokerHandTest {
             result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(TIE);
+        }
+
+        @Test
+        @DisplayName("loses to straight hand")
+        void losesToStraightHand() {
+            firstHand = new PokerHand("2H 6D 7H 10C 10S");
+            secondHand = new PokerHand("2D 3H 4D 5H 6D");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
         }
 
         @Test

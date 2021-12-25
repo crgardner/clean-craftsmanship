@@ -1,8 +1,8 @@
 package org.crg.kata.poker;
 
-class StraightHand extends HandClassification {
+class StraightHandClassification extends HandClassification {
 
-    StraightHand(int[] cardValues) {
+    StraightHandClassification(int[] cardValues) {
         super(cardValues);
     }
 
