@@ -84,7 +84,6 @@ class PokerHandTest {
         }
     }
 
-
     @Nested
     @DisplayName("Two pairs")
     class TwoPairs {
