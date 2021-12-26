@@ -15,7 +15,7 @@ public class PokerHand {
     }
 
     public Result compareWith(PokerHand secondHand) {
-        var classifier = new StraightHandClassifier();
+        var classifier = new FourOfAKindClassifier();
         var myHand = classifier.classify(numericHandValue);
         var yourHand = classifier.classify(secondHand.numericHandValue);
 

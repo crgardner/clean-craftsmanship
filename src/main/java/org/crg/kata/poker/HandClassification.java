@@ -11,6 +11,10 @@ abstract class HandClassification {
 
     abstract Result play(HandClassification hand);
 
+    Result playFourOfAKind(int[] cardValues) { //NOSONAR
+        return Result.LOSE;
+    }
+
     Result playStraightHand(int[] cardValues) {  //NOSONAR
         return Result.LOSE;
     }
@@ -31,7 +35,7 @@ abstract class HandClassification {
         return doDetermineResult(otherCardValues, HAND_SIZE);
     }
 
-    private Result doDetermineResult(int[] otherCardValues, int topCardPosition) {
+    protected Result doDetermineResult(int[] otherCardValues, int topCardPosition) {
         if (topCardPosition < 0) {
             return Result.TIE;
         }
@@ -50,4 +54,5 @@ abstract class HandClassification {
     protected int[] cardValues() {
         return cardValues;
     }
+
 }

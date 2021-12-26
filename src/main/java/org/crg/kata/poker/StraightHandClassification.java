@@ -12,6 +12,11 @@ class StraightHandClassification extends HandClassification {
     }
 
     @Override
+    Result playFourOfAKind(int[] otherCardValues) {
+        return Result.WIN;
+    }
+    
+    @Override
     Result playStraightHand(int[] otherCardValues) {
         return determineResult(otherCardValues);
     }

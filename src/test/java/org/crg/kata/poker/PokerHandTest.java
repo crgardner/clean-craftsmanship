@@ -23,6 +23,32 @@ class PokerHandTest {
     private Result result;
 
     @Nested
+    @DisplayName("Four of a kind")
+    class FourOfAKind {
+        @Test
+        @DisplayName("beats straight hand")
+        void beatsStraightHand() {
+            firstHand = new PokerHand("9H 9C 9D 9S KH");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats lower ranked four of a kind")
+        void beatsLowerRankedFourOfAKind() {
+            firstHand = new PokerHand("9H 9C 9D 9S KH");
+            secondHand = new PokerHand("4C 4D 4S 4H AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+    }
+
+    @Nested
     @DisplayName("Straight")
     class Straight {
 
@@ -81,6 +107,17 @@ class PokerHandTest {
             var result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("9H 9C 9D 9S KH");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
         }
     }
 

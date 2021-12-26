@@ -7,6 +7,25 @@ interface HandClassifier {
     HandClassification classify(int[] cardValues);
 }
 
+class FourOfAKindClassifier implements HandClassifier {
+    private final HandClassifier nextClassifier = new StraightHandClassifier();
+
+    @Override
+    public HandClassification classify(int[] cardValues) {
+        if (hasFourOfAKind(cardValues)) {
+            return new FourOfAKindClassification(cardValues);
+        }
+        return nextClassifier.classify(cardValues);
+    }
+
+    private boolean hasFourOfAKind(int[] cardValues) {
+        var cardCounts = Arrays.stream(cardValues).boxed()
+                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+        return cardCounts.values().stream().anyMatch(c -> c.equals(4L));
+    }
+}
+
 class StraightHandClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new PairClassifier();
 
