@@ -15,20 +15,25 @@ class TwoPairClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(int[] cardValues) {
-        return determinePairResult(cardValues);
+    Result playFourOfAKind(int[] opponentCardValues) {
+        return Result.WIN;
     }
 
-    private Result determinePairResult(int[] otherCardValues) {
-        if (lowestPair() > lowestPair(otherCardValues)) {
+    @Override
+    Result playTwoPairs(int[] opponentCardValues) {
+        return determinePairResult(opponentCardValues);
+    }
+
+    private Result determinePairResult(int[] opponentCardValues) {
+        if (lowestPair() > lowestPair(opponentCardValues)) {
             return Result.LOSE;
         }
 
-        if (lowestPair() < lowestPair(otherCardValues)) {
+        if (lowestPair() < lowestPair(opponentCardValues)) {
             return Result.WIN;
         }
 
-        return determineResult(otherCardValues);
+        return determineResult(opponentCardValues);
 
     }
 

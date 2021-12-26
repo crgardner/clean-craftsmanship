@@ -1,5 +1,8 @@
 package org.crg.kata.poker;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class FourOfAKindClassification extends HandClassification {
     public FourOfAKindClassification(int[] cardValues) {
         super(cardValues);
@@ -11,9 +14,30 @@ public class FourOfAKindClassification extends HandClassification {
     }
 
     @Override
-    Result playFourOfAKind(int[] cardValues) {
-        // this works only if high card is not one of the four. Need to rewrite this.
-        return doDetermineResult(cardValues, 3);
+    Result playFourOfAKind(int[] opponentCardValues) {
+        var possibleFour = fourOfAKind(cardValues());
+        var opponentPossibleFour = fourOfAKind(opponentCardValues);
+
+        if (possibleFour.isEmpty()) {
+            return Result.WIN;
+        }
+
+        if (opponentPossibleFour.isEmpty()) {
+            return Result.LOSE;
+        }
+
+        if (possibleFour.get() > opponentPossibleFour.get()) {
+            return Result.LOSE;
+        }
+
+        return Result.WIN;
+    }
+
+    private Optional<Integer> fourOfAKind(int[] cardValues) {
+        var cardCounts = Arrays.stream(cardValues).boxed()
+                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+
+        return cardCounts.entrySet().stream().filter(c -> c.getValue().equals(4L)).map(Map.Entry::getKey).findFirst();
     }
 
 

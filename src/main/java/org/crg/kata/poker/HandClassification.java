@@ -11,41 +11,41 @@ abstract class HandClassification {
 
     abstract Result play(HandClassification hand);
 
-    Result playFourOfAKind(int[] cardValues) { //NOSONAR
+    Result playFourOfAKind(int[] opponentCardValues) { //NOSONAR
         return Result.LOSE;
     }
 
-    Result playStraightHand(int[] cardValues) {  //NOSONAR
+    Result playStraightHand(int[] opponentCardValues) {  //NOSONAR
         return Result.LOSE;
     }
 
-    Result playTwoPairs(@SuppressWarnings("unused") int[] cardValues) { //NOSONAR
+    Result playTwoPairs(int[] opponentCardValues) { //NOSONAR
         return Result.LOSE;
     }
 
-    Result playOnePair(@SuppressWarnings("unused") int[] cardValues) { //NOSONAR
+    Result playOnePair(int[] opponentCardValues) { //NOSONAR
         return Result.LOSE;
     }
 
-    Result playHighCardHand(int[] cardValues) { //NOSONAR
+    Result playHighCardHand(int[] opponentCardValues) { //NOSONAR
         return Result.LOSE;
     }
 
-    protected Result determineResult(int[] otherCardValues) {
-        return doDetermineResult(otherCardValues, HAND_SIZE);
+    protected Result determineResult(int[] opponentCardValues) {
+        return doDetermineResult(opponentCardValues, HAND_SIZE);
     }
 
-    protected Result doDetermineResult(int[] otherCardValues, int topCardPosition) {
+    protected Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
         if (topCardPosition < 0) {
             return Result.TIE;
         }
 
-        if (cardValues[topCardPosition] > otherCardValues[topCardPosition]) {
+        if (cardValues[topCardPosition] > opponentCardValues[topCardPosition]) {
             return Result.LOSE;
         }
 
-        if (cardValues[topCardPosition] == otherCardValues[topCardPosition]) {
-            return doDetermineResult(otherCardValues, topCardPosition - 1);
+        if (cardValues[topCardPosition] == opponentCardValues[topCardPosition]) {
+            return doDetermineResult(opponentCardValues, topCardPosition - 1);
         }
 
         return Result.WIN;

@@ -12,18 +12,23 @@ class OnePairClassification extends HandClassification {
     }
 
     @Override
-    Result playStraightHand(int[] otherCardValues) {
+    Result playFourOfAKind(int[] opponentCardValues) {
         return Result.WIN;
     }
 
     @Override
-    Result playTwoPairs(int[] otherCardValues) {
+    Result playStraightHand(int[] opponentCardValues) {
         return Result.WIN;
     }
 
     @Override
-    Result playOnePair(int[] otherCardValues) {
-        return determineResult(otherCardValues);
+    Result playTwoPairs(int[] opponentCardValues) {
+        return Result.WIN;
+    }
+
+    @Override
+    Result playOnePair(int[] opponentCardValues) {
+        return determineResult(opponentCardValues);
     }
 
 }

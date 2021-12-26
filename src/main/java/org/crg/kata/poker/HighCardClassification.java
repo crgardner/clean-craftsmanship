@@ -12,23 +12,28 @@ class HighCardClassification extends HandClassification {
     }
 
     @Override
-    Result playStraightHand(int[] cardValues) {
+    Result playFourOfAKind(int[] opponentCardValues) {
         return Result.WIN;
     }
 
     @Override
-    Result playTwoPairs(int[] cardValues) {
+    Result playStraightHand(int[] opponentCardValues) {
         return Result.WIN;
     }
 
     @Override
-    Result playOnePair(int[] cardValues) {
+    Result playTwoPairs(int[] opponentCardValues) {
         return Result.WIN;
     }
 
     @Override
-    public Result playHighCardHand(int[] cardValues) {
-        return determineResult(cardValues);
+    Result playOnePair(int[] opponentCardValues) {
+        return Result.WIN;
+    }
+
+    @Override
+    public Result playHighCardHand(int[] opponentCardValues) {
+        return determineResult(opponentCardValues);
     }
 
 }
