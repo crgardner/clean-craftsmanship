@@ -39,7 +39,7 @@ abstract class HandClassification {
         return doDetermineResult(opponentCardValues, HAND_SIZE);
     }
 
-    protected Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
+    private Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
         if (topCardPosition < 0) {
             return opponentTies();
         }

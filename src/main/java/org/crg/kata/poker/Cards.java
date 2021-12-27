@@ -21,7 +21,11 @@ public class Cards {
     }
 
     public int threeOfOneCardRank() {
-        return countCards().entrySet().stream().filter(c -> c.getValue().equals(3L)).map(Map.Entry::getKey)
+        return cardValueWithCount(3L);
+    }
+
+    private Integer cardValueWithCount(long cardCount) {
+        return countCards().entrySet().stream().filter(c -> c.getValue().equals(cardCount)).map(Map.Entry::getKey)
                            .findFirst().orElse(0);
     }
 
@@ -38,6 +42,10 @@ public class Cards {
 
     public boolean hasFourOfAKind() {
         return countCards().values().stream().anyMatch(c -> c.equals(4L));
+    }
+
+    public int fourOfOneCardRank() {
+        return cardValueWithCount(4L);
     }
 
 }

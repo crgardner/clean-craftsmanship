@@ -256,6 +256,17 @@ class PokerHandTest {
 
             assertThat(result).isEqualTo(LOSE);
         }
+
+        @Test
+        @DisplayName("loses to full house hand")
+        void losesToFullHouseHand() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
     }
 
     @Nested
@@ -269,6 +280,17 @@ class PokerHandTest {
             secondHand = new PokerHand("3C 3D 3H 3S 5C");
 
             var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to full house hand")
+        void losesToFullHouseHand() {
+            firstHand = new PokerHand("2C 2D 4C 4D AC");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+
+            result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(LOSE);
         }
@@ -375,6 +397,18 @@ class PokerHandTest {
 
             assertThat(result).isEqualTo(LOSE);
         }
+
+        @Test
+        @DisplayName("loses to full house hand")
+        void losesToFullHouseHand() {
+            firstHand = new PokerHand("2H 6D 7H AC AS");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
         @Test
         @DisplayName("loses to straight hand")
         void losesToStraightHand() {
@@ -429,6 +463,17 @@ class PokerHandTest {
         void losesToFourOfAKindHand() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("9H 9C 9D 9S QH");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to full house hand")
+        void losesToFullHouseHand() {
+            firstHand = new PokerHand("2H 4D 8D QC KC");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
             result = firstHand.compareWith(secondHand);
 
