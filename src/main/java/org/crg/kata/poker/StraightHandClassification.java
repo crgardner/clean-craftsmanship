@@ -13,9 +13,14 @@ class StraightHandClassification extends HandClassification {
 
     @Override
     Result playFourOfAKind(int[] opponentCardValues) {
-        return Result.WIN;
+        return opponentWins();
     }
-    
+
+    @Override
+    Result playFullHouse(int[] opponentCardValues) {
+        return opponentWins();
+    }
+
     @Override
     Result playStraightHand(int[] opponentCardValues) {
         return determineResult(opponentCardValues);

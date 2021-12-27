@@ -12,23 +12,27 @@ abstract class HandClassification {
     abstract Result play(HandClassification hand);
 
     Result playFourOfAKind(int[] opponentCardValues) { //NOSONAR
-        return Result.LOSE;
+        return opponentLoses();
+    }
+
+    Result playFullHouse(int[] opponentCardValues) { //NOSONAR
+        return opponentLoses();
     }
 
     Result playStraightHand(int[] opponentCardValues) {  //NOSONAR
-        return Result.LOSE;
+        return opponentLoses();
     }
 
     Result playTwoPairs(int[] opponentCardValues) { //NOSONAR
-        return Result.LOSE;
+        return opponentLoses();
     }
 
     Result playOnePair(int[] opponentCardValues) { //NOSONAR
-        return Result.LOSE;
+        return opponentLoses();
     }
 
     Result playHighCardHand(int[] opponentCardValues) { //NOSONAR
-        return Result.LOSE;
+        return opponentLoses();
     }
 
     protected Result determineResult(int[] opponentCardValues) {
@@ -37,22 +41,34 @@ abstract class HandClassification {
 
     protected Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
         if (topCardPosition < 0) {
-            return Result.TIE;
+            return opponentTies();
         }
 
         if (cardValues[topCardPosition] > opponentCardValues[topCardPosition]) {
-            return Result.LOSE;
+            return opponentLoses();
         }
 
         if (cardValues[topCardPosition] == opponentCardValues[topCardPosition]) {
             return doDetermineResult(opponentCardValues, topCardPosition - 1);
         }
 
-        return Result.WIN;
+        return opponentWins();
     }
 
     protected int[] cardValues() {
         return cardValues;
+    }
+
+    protected Result opponentWins() {
+        return Result.WIN;
+    }
+
+    protected Result opponentLoses() {
+        return Result.LOSE;
+    }
+
+    protected Result opponentTies() {
+        return Result.TIE;
     }
 
 }

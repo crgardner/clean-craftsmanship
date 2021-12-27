@@ -16,7 +16,12 @@ class TwoPairClassification extends HandClassification {
 
     @Override
     Result playFourOfAKind(int[] opponentCardValues) {
-        return Result.WIN;
+        return opponentWins();
+    }
+
+    @Override
+    Result playFullHouse(int[] opponentCardValues) {
+        return opponentWins();
     }
 
     @Override
@@ -26,11 +31,11 @@ class TwoPairClassification extends HandClassification {
 
     private Result determinePairResult(int[] opponentCardValues) {
         if (lowestPair() > lowestPair(opponentCardValues)) {
-            return Result.LOSE;
+            return opponentLoses();
         }
 
         if (lowestPair() < lowestPair(opponentCardValues)) {
-            return Result.WIN;
+            return opponentWins();
         }
 
         return determineResult(opponentCardValues);

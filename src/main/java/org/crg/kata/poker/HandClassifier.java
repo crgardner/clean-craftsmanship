@@ -1,14 +1,11 @@
 package org.crg.kata.poker;
 
-import java.util.*;
-import java.util.stream.*;
-
 interface HandClassifier {
     HandClassification classify(int[] cardValues);
 }
 
 class FourOfAKindClassifier implements HandClassifier {
-    private final HandClassifier nextClassifier = new StraightHandClassifier();
+    private final HandClassifier nextClassifier = new FullHouseClassifier();
 
     @Override
     public HandClassification classify(int[] cardValues) {
@@ -19,10 +16,25 @@ class FourOfAKindClassifier implements HandClassifier {
     }
 
     private boolean hasFourOfAKind(int[] cardValues) {
-        var cardCounts = Arrays.stream(cardValues).boxed()
-                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+        return new Cards(cardValues).hasFourOfAKind();
+    }
+}
 
-        return cardCounts.values().stream().anyMatch(c -> c.equals(4L));
+class FullHouseClassifier implements HandClassifier {
+    private final HandClassifier nextClassifier = new StraightHandClassifier();
+
+    @Override
+    public HandClassification classify(int[] cardValues) {
+        if (hasFullHouse(cardValues)) {
+            return new FullHouseClassification(cardValues);
+        }
+        return nextClassifier.classify(cardValues);
+    }
+
+    private boolean hasFullHouse(int[] cardValues) {
+        var cards = new Cards(cardValues);
+
+        return cards.hasNumberOfPairs(1) && cards.hasThreeOfOneCardRank();
     }
 }
 
@@ -38,9 +50,7 @@ class StraightHandClassifier implements HandClassifier {
     }
 
     private boolean isStraight(int[] cardValues) {
-        return IntStream.range(0, cardValues.length - 1)
-                        .map(i -> cardValues[i] - cardValues[i + 1])
-                        .allMatch(d -> d == -1);
+       return new Cards(cardValues).isStraight();
     }
 
 }
@@ -71,10 +81,7 @@ class PairClassifier implements HandClassifier {
     }
 
     private boolean hasPairs(int pairCount, int[] cardValues) {
-        var cardCounts = Arrays.stream(cardValues).boxed()
-                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-
-        return cardCounts.values().stream().filter(c -> c.equals(2L)).count() == pairCount;
+        return new Cards(cardValues).hasNumberOfPairs(pairCount);
     }
 }
 

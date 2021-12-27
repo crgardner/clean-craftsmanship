@@ -19,18 +19,18 @@ public class FourOfAKindClassification extends HandClassification {
         var opponentPossibleFour = fourOfAKind(opponentCardValues);
 
         if (possibleFour.isEmpty()) {
-            return Result.WIN;
+            return opponentWins();
         }
 
         if (opponentPossibleFour.isEmpty()) {
-            return Result.LOSE;
+            return opponentLoses();
         }
 
         if (possibleFour.get() > opponentPossibleFour.get()) {
-            return Result.LOSE;
+            return opponentLoses();
         }
 
-        return Result.WIN;
+        return opponentWins();
     }
 
     private Optional<Integer> fourOfAKind(int[] cardValues) {
