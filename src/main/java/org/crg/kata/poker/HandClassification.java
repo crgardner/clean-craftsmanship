@@ -1,12 +1,10 @@
 package org.crg.kata.poker;
 
 abstract class HandClassification {
-    public static final int HAND_SIZE = 4;
-
-    private final int[] cardValues;
+    private final Cards cards;
 
     HandClassification(int[] cardValues) {
-        this.cardValues = cardValues;
+        this.cards = new Cards(cardValues);
     }
 
     abstract Result play(HandClassification hand);
@@ -19,7 +17,7 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playStraightHand(int[] opponentCardValues) {  //NOSONAR
+    Result playStraightHand(Cards opponentCards) {  //NOSONAR
         return opponentLoses();
     }
 
@@ -27,44 +25,24 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playTwoPairs(int[] opponentCardValues) { //NOSONAR
+    Result playTwoPairs(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playOnePair(int[] opponentCardValues) { //NOSONAR
+    Result playOnePair(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playHighCardHand(int[] opponentCardValues) { //NOSONAR
+    Result playHighCardHand(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
-    protected Result determineResult(int[] opponentCardValues) {
-        return doDetermineResult(opponentCardValues, HAND_SIZE);
-    }
-
-    private Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
-        if (topCardPosition < 0) {
-            return opponentTies();
-        }
-
-        if (cardValues[topCardPosition] > opponentCardValues[topCardPosition]) {
-            return opponentLoses();
-        }
-
-        if (cardValues[topCardPosition] == opponentCardValues[topCardPosition]) {
-            return doDetermineResult(opponentCardValues, topCardPosition - 1);
-        }
-
-        return opponentWins();
-    }
-
-    protected int[] cardValues() {
-        return cardValues;
+    protected Result determineResult(Cards opponentCards) {
+        return cards.determineResult(opponentCards);
     }
 
     protected Cards cards() {
-        return new Cards(cardValues);
+        return cards;
     }
 
     protected Result opponentWins() {
@@ -73,10 +51,6 @@ abstract class HandClassification {
 
     protected Result opponentLoses() {
         return Result.LOSE;
-    }
-
-    protected Result opponentTies() {
-        return Result.TIE;
     }
 
 }

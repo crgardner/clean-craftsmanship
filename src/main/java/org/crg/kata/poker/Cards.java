@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.stream.*;
 
 public class Cards {
+    private static final int HAND_SIZE = 4;
+
     private final int[] cardValues;
 
     public Cards(int... cardValues) {
@@ -48,7 +50,27 @@ public class Cards {
         return cardValueWithCount(4L);
     }
 
-    public int[] getCardValues() {
+    public int[] cardValues() {
         return cardValues;
+    }
+
+    public Result determineResult(Cards opponentCards) {
+        return cdoDetermineResult(opponentCards.cardValues(), HAND_SIZE);
+    }
+
+    public Result cdoDetermineResult(int[] opponentCardValues, int topCardPosition) {
+        if (topCardPosition < 0) {
+            return Result.TIE;
+        }
+
+        if (cardValues[topCardPosition] > opponentCardValues[topCardPosition]) {
+            return Result.LOSE;
+        }
+
+        if (cardValues[topCardPosition] == opponentCardValues[topCardPosition]) {
+            return cdoDetermineResult(opponentCardValues, topCardPosition - 1);
+        }
+
+        return Result.WIN;
     }
 }

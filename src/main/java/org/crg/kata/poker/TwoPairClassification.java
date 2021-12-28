@@ -11,7 +11,7 @@ class TwoPairClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playTwoPairs(cardValues());
+        return hand.playTwoPairs(cards());
     }
 
     @Override
@@ -30,8 +30,8 @@ class TwoPairClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(int[] opponentCardValues) {
-        return determinePairResult(opponentCardValues);
+    Result playTwoPairs(Cards cards) {
+        return determinePairResult(cards.cardValues());
     }
 
     private Result determinePairResult(int[] opponentCardValues) {
@@ -43,12 +43,12 @@ class TwoPairClassification extends HandClassification {
             return opponentWins();
         }
 
-        return determineResult(opponentCardValues);
+        return determineResult(new Cards(opponentCardValues));
 
     }
 
     private Integer lowestPair() {
-        return lowestPair(cardValues());
+        return lowestPair(cards().cardValues());
     }
 
     private Integer lowestPair(int[] currentCardValues) {

@@ -8,7 +8,7 @@ class StraightHandClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playStraightHand(cardValues());
+        return hand.playStraightHand(cards());
     }
 
     @Override
@@ -22,8 +22,8 @@ class StraightHandClassification extends HandClassification {
     }
 
     @Override
-    Result playStraightHand(int[] opponentCardValues) {
-        return determineResult(opponentCardValues);
+    Result playStraightHand(Cards opponentCards) {
+        return determineResult(opponentCards);
     }
 
 }

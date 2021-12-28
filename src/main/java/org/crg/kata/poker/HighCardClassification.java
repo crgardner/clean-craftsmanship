@@ -8,7 +8,7 @@ class HighCardClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playHighCardHand(cardValues());
+        return hand.playHighCardHand(cards());
     }
 
     @Override
@@ -22,7 +22,7 @@ class HighCardClassification extends HandClassification {
     }
 
     @Override
-    Result playStraightHand(int[] opponentCardValues) {
+    Result playStraightHand(Cards opponentCards) {
         return opponentWins();
     }
 
@@ -32,18 +32,18 @@ class HighCardClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(int[] opponentCardValues) {
+    Result playTwoPairs(Cards opponentCards) {
         return opponentWins();
     }
 
     @Override
-    Result playOnePair(int[] opponentCardValues) {
+    Result playOnePair(Cards opponentCards) {
         return opponentWins();
     }
 
     @Override
-    public Result playHighCardHand(int[] opponentCardValues) {
-        return determineResult(opponentCardValues);
+    public Result playHighCardHand(Cards opponentCards) {
+        return determineResult(opponentCards);
     }
 
 }
