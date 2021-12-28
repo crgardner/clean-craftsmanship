@@ -29,8 +29,8 @@ class PokerHandTest {
     @DisplayName("Four of a kind")
     class FourOfAKind {
         @Test
-        @DisplayName("beats full house hand")
-        void beatsFullHouseHand() {
+        @DisplayName("beats full house")
+        void beatsFullHouse() {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -40,8 +40,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats straight hand")
-        void beatsStraightHand() {
+        @DisplayName("beats straight")
+        void beatsStraight() {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
@@ -51,8 +51,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats two pair hand")
-        void beatsTwoPairHand() {
+        @DisplayName("beats two pair")
+        void beatsTwoPair() {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 2D 4C 4D 5C");
 
@@ -62,8 +62,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats one pair hand")
-        void beatsOnePairHand() {
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 2D 3C 4D 5C");
 
@@ -73,8 +73,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 4D 6C 8D AC");
 
@@ -110,8 +110,8 @@ class PokerHandTest {
     @DisplayName("Full house")
     class FullHouse {
         @Test
-        @DisplayName("loses to four of a kind hand")
-        void losesToFourOfAKindHand() {
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
             firstHand = new PokerHand("2C 2D 10S 10H 10C");
             secondHand = new PokerHand("9H 9C 9D 9S AH");
 
@@ -121,8 +121,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats straight hand")
-        void beatsStraightHand() {
+        @DisplayName("beats straight")
+        void beatsStraight() {
             firstHand = new PokerHand("2C 2D 10S 10H 10C");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
@@ -132,8 +132,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats two pairs hand")
-        void beatsTwoPairsHand() {
+        @DisplayName("beats two pair")
+        void beatsTwoPair() {
             firstHand = new PokerHand("2C 2D 10S 10H 10C");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
@@ -143,8 +143,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats one pair hand")
-        void beatsOnePairHand() {
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
             firstHand = new PokerHand("2C 2D 10S 10H 10C");
             secondHand = new PokerHand("2H 6D 7H 10C 10S");
 
@@ -154,8 +154,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("2C 2D 10S 10H 10C");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
@@ -197,7 +197,7 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("ties another straight hand with same high card")
+        @DisplayName("ties another straight with same high card")
         void tiesAnotherStraightWithSameHighCard() {
             firstHand = new PokerHand("3S 4H 5D 6C 7S");
 
@@ -207,7 +207,7 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats lower ranked straight hand")
+        @DisplayName("beats lower ranked straight")
         void beatsLowerRankedStraight() {
             firstHand = new PokerHand("4S 5H 6D 7C 8S");
 
@@ -217,7 +217,7 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to higher ranked straight hand")
+        @DisplayName("loses to higher ranked straight")
         void losesToHigherRankedStraight() {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
 
@@ -227,8 +227,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
@@ -238,8 +238,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats one pair hand")
-        void beatsOnePairHand() {
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
             secondHand = new PokerHand("2D 6H 7D 10H 10D");
 
@@ -260,8 +260,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to full house hand")
-        void losesToFullHouseHand() {
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -275,8 +275,8 @@ class PokerHandTest {
     @DisplayName("Three of a kind")
     class ThreeOfAKind {
         @Test
-        @DisplayName("loses to four of a kind hand")
-        void losesToFourOfAKindHand() {
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -286,8 +286,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to full house hand")
-        void losesToFullHouseHand() {
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -297,8 +297,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to straight hand")
-        void losesToStraightHand() {
+        @DisplayName("loses to straight")
+        void losesToStraight() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("3S 4H 5D 6C 7S");
 
@@ -308,8 +308,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats two pair hand")
-        void beatsTwoPairHand() {
+        @DisplayName("beats two pair")
+        void beatsTwoPair() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
@@ -319,8 +319,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats one pair hand")
-        void beatsOnePairHand() {
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2H 6D 7H 10C 10S");
 
@@ -330,8 +330,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
@@ -366,11 +366,11 @@ class PokerHandTest {
 
     @Nested
     @DisplayName("Two pairs")
-    class TwoPairs {
+    class TwoPair {
 
         @Test
-        @DisplayName("loses to four of a kind hand")
-        void losesToFourOfAKindHand() {
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("3C 3D 3H 3S 5C");
 
@@ -380,8 +380,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to full house hand")
-        void losesToFullHouseHand() {
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -391,8 +391,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to straight hand")
-        void losesToStraightHand() {
+        @DisplayName("loses to straight")
+        void losesToStraight() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
@@ -402,8 +402,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("ties same ranked two pair hand with same remaining cards")
-        void tiesSameRankedTwoPairHandWithSameRemainingCards() {
+        @DisplayName("ties same ranked two pair with same remaining cards")
+        void tiesSameRankedTwoPairWithSameRemainingCards() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 5H");
 
@@ -413,8 +413,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats two pair hand with same high pair but lower ranked low pair")
-        void beatsTwoPairHandWithSameHighPairButLowerRankedLowPair() {
+        @DisplayName("beats two pair with same high pair but lower ranked low pair")
+        void beatsTwoPairWithSameHighPairButLowerRankedLowPair() {
             firstHand = new PokerHand("3C 3D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 6H");
 
@@ -424,8 +424,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats lower ranked two pair hand")
-        void beatsLowerRankedTwoPairHand() {
+        @DisplayName("beats lower ranked two pair")
+        void beatsLowerRankedTwoPair() {
             firstHand = new PokerHand("2C 2D 5C 5D 7C");
             secondHand = new PokerHand("2H 2S 4H 4S 7H");
 
@@ -435,8 +435,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to higher ranked two pair hand")
-        void losesToHigherRankedTwoPairHand() {
+        @DisplayName("loses to higher ranked two pair")
+        void losesToHigherRankedTwoPair() {
             firstHand = new PokerHand("2C 2D 5C 5D 7C");
             secondHand = new PokerHand("3H 3S 5H 5S 7H");
 
@@ -446,8 +446,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to same ranked two pair hand with higher ranked remaining card")
-        void losesToSameRankedTwoPairHandWithHigherRankedRemainingCard() {
+        @DisplayName("loses to same ranked two pair with higher ranked remaining card")
+        void losesToSameRankedTwoPairWithHigherRankedRemainingCard() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 6H");
 
@@ -457,8 +457,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats one pair hand")
-        void beatsOnePairHand() {
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2D 6H 7D 10H 10D");
 
@@ -468,8 +468,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
@@ -483,8 +483,8 @@ class PokerHandTest {
     @DisplayName("One pair")
     class OnePair {
         @Test
-        @DisplayName("loses to four of a kind hand")
-        void losesToFourOfAKindHand() {
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
             firstHand = new PokerHand("2H 6D 7H 10C 10S");
             secondHand = new PokerHand("9H 9C 9D 9S KH");
 
@@ -494,8 +494,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to full house hand")
-        void losesToFullHouseHand() {
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
             firstHand = new PokerHand("2H 6D 7H AC AS");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -505,8 +505,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to straight hand")
-        void losesToStraightHand() {
+        @DisplayName("loses to straight")
+        void losesToStraight() {
             firstHand = new PokerHand("2H 6D 7H 10C 10S");
             secondHand = new PokerHand("2D 3H 4D 5H 6D");
 
@@ -516,8 +516,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to two pair hand")
-        void losesToTwoPairHand() {
+        @DisplayName("loses to two pair")
+        void losesToTwoPair() {
             firstHand = new PokerHand("2H 6D 7H 10C 10S");
             secondHand = new PokerHand("3D 3H 4D 4H 6D");
 
@@ -527,7 +527,7 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("ties same ranked one pair hand")
+        @DisplayName("ties same ranked one pair")
         void tiesSameRankedOnePair() {
             firstHand = new PokerHand("2H 6D 7H 10C 10S");
             secondHand = new PokerHand("2D 6H 7D 10H 10D");
@@ -538,8 +538,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand")
-        void beatsHighCardHand() {
+        @DisplayName("beats high card")
+        void beatsHighCard() {
             firstHand = new PokerHand("2H 6D 7H 10C 10S");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
@@ -554,8 +554,8 @@ class PokerHandTest {
     @DisplayName("High card")
     class HighCard {
         @Test
-        @DisplayName("loses to four of kind hand")
-        void losesToFourOfAKindHand() {
+        @DisplayName("loses to four of kind")
+        void losesToFourOfAKind() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("9H 9C 9D 9S QH");
 
@@ -565,8 +565,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to full house hand")
-        void losesToFullHouseHand() {
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2C 2D 10S 10H 10C");
 
@@ -576,8 +576,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to straight hand")
-        void losesToStraightHand() {
+        @DisplayName("loses to straight")
+        void losesToStraight() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2C 3D 4S 5H 6C");
 
@@ -588,8 +588,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to two pairs hand")
-        void losesToTwoPairsHand() {
+        @DisplayName("loses to two pair")
+        void losesToTwoPair() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2H 2S 4H 4S 5H");
 
@@ -599,8 +599,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to one pair hand")
-        void losesToOnePairHand() {
+        @DisplayName("loses to one pair")
+        void losesToOnePair() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2H 6D 7H 10C 10S");
 
@@ -610,8 +610,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats lower ranked high card hand")
-        void beatsLowerRankedHighCardHand() {
+        @DisplayName("beats lower ranked high card")
+        void beatsLowerRankedHighCard() {
             firstHand = new PokerHand("2H 4D 8D QC AC");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
@@ -621,7 +621,7 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats high card hand with lower ranked second high card")
+        @DisplayName("beats high card with lower ranked second high card")
         void beatsHighCardWithLowerRankedSecondHighCard() {
             firstHand = new PokerHand("2H 4D 8D QC AC");
             secondHand = new PokerHand("2H 5D 8D JC AC");
