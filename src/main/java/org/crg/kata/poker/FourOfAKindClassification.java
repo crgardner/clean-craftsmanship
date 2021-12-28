@@ -12,10 +12,9 @@ public class FourOfAKindClassification extends HandClassification {
 
     @Override
     Result playFourOfAKind(int[] opponentCardValues) {
-        var cards = new Cards(cardValues());
         var opponentCards = new Cards(opponentCardValues);
 
-        return cards.fourOfOneCardRank() < opponentCards.fourOfOneCardRank() ?
+        return cards().fourOfOneCardRank() < opponentCards.fourOfOneCardRank() ?
                 opponentWins() : opponentLoses();
 
     }

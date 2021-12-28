@@ -39,7 +39,7 @@ class FullHouseClassifier implements HandClassifier {
 }
 
 class StraightHandClassifier implements HandClassifier {
-    private final HandClassifier nextClassifier = new PairClassifier();
+    private final HandClassifier nextClassifier = new ThreeOfAKindClassifier();
 
     @Override
     public HandClassification classify(int[] cardValues) {
@@ -53,6 +53,22 @@ class StraightHandClassifier implements HandClassifier {
        return new Cards(cardValues).isStraight();
     }
 
+}
+
+class ThreeOfAKindClassifier implements HandClassifier {
+    private final HandClassifier nextClassifier = new PairClassifier();
+
+    @Override
+    public HandClassification classify(int[] cardValues) {
+        if (isThreeOfAKind(cardValues)) {
+            return new ThreeOfAKindClassification(cardValues);
+        }
+        return nextClassifier.classify(cardValues);
+    }
+
+    private boolean isThreeOfAKind(int[] cardValues) {
+        return new Cards(cardValues).hasThreeOfOneCardRank();
+    }
 }
 
 class PairClassifier implements HandClassifier {

@@ -27,6 +27,11 @@ class OnePairClassification extends HandClassification {
     }
 
     @Override
+    Result playThreeOfAKind(int[] opponentCardValues) {
+        return opponentWins();
+    }
+
+    @Override
     Result playTwoPairs(int[] opponentCardValues) {
         return opponentWins();
     }

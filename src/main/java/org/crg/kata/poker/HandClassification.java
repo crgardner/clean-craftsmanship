@@ -23,6 +23,10 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
+    Result playThreeOfAKind(int[] cardValues) { //NOSONAR
+        return opponentLoses();
+    }
+
     Result playTwoPairs(int[] opponentCardValues) { //NOSONAR
         return opponentLoses();
     }
@@ -57,6 +61,10 @@ abstract class HandClassification {
 
     protected int[] cardValues() {
         return cardValues;
+    }
+
+    protected Cards cards() {
+        return new Cards(cardValues);
     }
 
     protected Result opponentWins() {

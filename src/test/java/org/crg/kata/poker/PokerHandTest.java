@@ -3,6 +3,8 @@ package org.crg.kata.poker;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import java.nio.channels.Pipe;
+
 import static org.crg.kata.poker.Result.*;
 
 /**
@@ -267,6 +269,99 @@ class PokerHandTest {
 
             assertThat(result).isEqualTo(LOSE);
         }
+    }
+
+    @Nested
+    @DisplayName("Three of a kind")
+    class ThreeOfAKind {
+        @Test
+        @DisplayName("loses to four of a kind hand")
+        void losesToFourOfAKindHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to full house hand")
+        void losesToFullHouseHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to straight hand")
+        void losesToStraightHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("3S 4H 5D 6C 7S");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("beats two pair hand")
+        void beatsTwoPairHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2C 2D 4C 4D AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats one pair hand")
+        void beatsOnePairHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2H 6D 7H 10C 10S");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats high card hand")
+        void beatsHighCardHand() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2H 4D 8D QC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats lower ranked three of a kind")
+        void beatsLowerRankedThreeOfAKind() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("2H 2D 2D QC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("loses to higher ranked three of a kind")
+        void losesToHigherRankedThreeOfAKind() {
+            firstHand = new PokerHand("2H 2D 2D QC KC");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
     }
 
     @Nested
