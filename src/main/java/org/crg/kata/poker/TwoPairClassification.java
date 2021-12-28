@@ -1,8 +1,5 @@
 package org.crg.kata.poker;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 class TwoPairClassification extends HandClassification {
 
     TwoPairClassification(int[] cardValues) {
@@ -30,39 +27,17 @@ class TwoPairClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(Cards cards) {
-        return determinePairResult(cards.cardValues());
-    }
-
-    private Result determinePairResult(int[] opponentCardValues) {
-        if (lowestPair() > lowestPair(opponentCardValues)) {
+    Result playTwoPairs(Cards opponentCards) {
+        if (cards().lowestPair() > opponentCards.lowestPair()) {
             return opponentLoses();
         }
 
-        if (lowestPair() < lowestPair(opponentCardValues)) {
+        if (cards().lowestPair() < opponentCards.lowestPair()) {
             return opponentWins();
         }
 
-        return determineResult(new Cards(opponentCardValues));
+        return determineResult(opponentCards);
 
-    }
-
-    private Integer lowestPair() {
-        return lowestPair(cards().cardValues());
-    }
-
-    private Integer lowestPair(int[] currentCardValues) {
-        var cardCounts = Arrays.stream(currentCardValues).boxed()
-                               .collect(Collectors.groupingBy(c -> c, Collectors.counting()));
-
-
-        var pair = cardCounts.entrySet()
-                                            .stream()
-                                            .filter(e -> e.getValue().equals(2L))
-                                            .findFirst().map(Map.Entry::getKey);
-
-
-        return pair.orElse(-1);
     }
 
 }
