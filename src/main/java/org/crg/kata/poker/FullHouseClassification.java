@@ -7,18 +7,16 @@ public class FullHouseClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playFullHouse(cardValues());
+        return hand.playFullHouse(cards());
     }
 
     @Override
-    Result playFourOfAKind(int[] opponentCardValues) {
+    Result playFourOfAKind(Cards opponentCards) {
         return opponentWins();
     }
 
     @Override
-    Result playFullHouse(int[] opponentCardValues) {
-        var opponentCards = new Cards(opponentCardValues);
-
+    Result playFullHouse(Cards opponentCards) {
         return cards().threeOfOneCardRank() < opponentCards.threeOfOneCardRank() ?
                     opponentWins() : opponentLoses();
     }

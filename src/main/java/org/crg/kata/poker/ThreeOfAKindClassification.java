@@ -7,13 +7,11 @@ public class ThreeOfAKindClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playThreeOfAKind(cardValues());
+        return hand.playThreeOfAKind(cards());
     }
 
     @Override
-    Result playThreeOfAKind(int[] opponentCardValues) {
-        var opponentCards = new Cards(opponentCardValues);
-
+    Result playThreeOfAKind(Cards opponentCards) {
         return cards().threeOfOneCardRank() < opponentCards.threeOfOneCardRank() ?
                 opponentWins() : opponentLoses();
     }

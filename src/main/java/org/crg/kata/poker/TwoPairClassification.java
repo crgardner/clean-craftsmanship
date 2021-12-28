@@ -15,17 +15,17 @@ class TwoPairClassification extends HandClassification {
     }
 
     @Override
-    Result playFourOfAKind(int[] opponentCardValues) {
+    Result playFourOfAKind(Cards opponentCards) {
         return opponentWins();
     }
 
     @Override
-    Result playFullHouse(int[] opponentCardValues) {
+    Result playFullHouse(Cards opponentCards) {
         return opponentWins();
     }
 
     @Override
-    Result playThreeOfAKind(int[] opponentCardValues) {
+    Result playThreeOfAKind(Cards opponentCards) {
         return opponentWins();
     }
 

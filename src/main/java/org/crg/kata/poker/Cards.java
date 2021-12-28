@@ -48,4 +48,7 @@ public class Cards {
         return cardValueWithCount(4L);
     }
 
+    public int[] getCardValues() {
+        return cardValues;
+    }
 }

@@ -11,11 +11,11 @@ abstract class HandClassification {
 
     abstract Result play(HandClassification hand);
 
-    Result playFourOfAKind(int[] opponentCardValues) { //NOSONAR
+    Result playFourOfAKind(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playFullHouse(int[] opponentCardValues) { //NOSONAR
+    Result playFullHouse(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
@@ -23,7 +23,7 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playThreeOfAKind(int[] cardValues) { //NOSONAR
+    Result playThreeOfAKind(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 
