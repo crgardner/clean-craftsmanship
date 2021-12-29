@@ -8,50 +8,50 @@ class TwoPairClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playTwoPairs(cards());
+        return hand.playTwoPairs(this);
     }
 
     @Override
-    Result playStraightFlush(Cards opponentCards) {
+    Result playStraightFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFourOfAKind(Cards opponentCards) {
+    Result playFourOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFullHouse(Cards opponentCards) {
+    Result playFullHouse(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFlush(Cards opponentCards) {
+    Result playFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playStraight(Cards opponentCards) {
+    Result playStraight(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playThreeOfAKind(Cards opponentCards) {
+    Result playThreeOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playTwoPairs(Cards opponentCards) {
-        if (cards().lowestPair() > opponentCards.lowestPair()) {
+    Result playTwoPairs(HandClassification opponentHand) {
+        if (cards().lowestPair() > opponentHand.cards().lowestPair()) {
             return opponentLoses();
         }
 
-        if (cards().lowestPair() < opponentCards.lowestPair()) {
+        if (cards().lowestPair() < opponentHand.cards().lowestPair()) {
             return opponentWins();
         }
 
-        return determineResult(opponentCards);
+        return determineResult(opponentHand);
 
     }
 

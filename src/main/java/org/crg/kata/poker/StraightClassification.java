@@ -8,32 +8,32 @@ class StraightClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playStraight(cards());
+        return hand.playStraight(this);
     }
 
     @Override
-    Result playStraightFlush(Cards opponentCards) {
+    Result playStraightFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFourOfAKind(Cards opponentCards) {
+    Result playFourOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFullHouse(Cards opponentCards) {
+    Result playFullHouse(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFlush(Cards opponentCards) {
+    Result playFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playStraight(Cards opponentCards) {
-        return determineResult(opponentCards);
+    Result playStraight(HandClassification opponentHand) {
+        return determineResult(opponentHand);
     }
 
 }

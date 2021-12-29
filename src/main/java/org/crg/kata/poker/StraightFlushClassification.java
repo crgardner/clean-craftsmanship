@@ -7,11 +7,11 @@ public class StraightFlushClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playStraightFlush(cards());
+        return hand.playStraightFlush(this);
     }
 
     @Override
-    Result playStraightFlush(Cards opponentCards) {
-        return determineResult(opponentCards);
+    Result playStraightFlush(HandClassification opponentHand) {
+        return determineResult(opponentHand);
     }
 }

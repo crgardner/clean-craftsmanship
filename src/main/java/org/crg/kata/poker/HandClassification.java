@@ -9,44 +9,44 @@ abstract class HandClassification {
 
     abstract Result play(HandClassification hand);
 
-    Result playStraightFlush(Cards opponentCards) { //NOSONAR
+    Result playStraightFlush(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playFourOfAKind(Cards opponentCards) { //NOSONAR
+    Result playFourOfAKind(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playFlush(Cards opponentCards) { //NOSONAR
+    Result playFlush(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playFullHouse(Cards opponentCards) { //NOSONAR
+    Result playFullHouse(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playStraight(Cards opponentCards) {  //NOSONAR
+    Result playStraight(HandClassification opponentHand) {  //NOSONAR
         return opponentLoses();
     }
 
-    Result playThreeOfAKind(Cards opponentCards) { //NOSONAR
+    Result playThreeOfAKind(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playTwoPairs(Cards opponentCards) { //NOSONAR
+    Result playTwoPairs(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playOnePair(Cards opponentCards) { //NOSONAR
+    Result playOnePair(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    Result playHighCard(Cards opponentCards) { //NOSONAR
+    Result playHighCard(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
-    protected Result determineResult(Cards opponentCards) {
-        return cards.determineResult(opponentCards);
+    protected Result determineResult(HandClassification opponentHand) {
+        return cards.determineResult(opponentHand.cards());
     }
 
     protected Cards cards() {

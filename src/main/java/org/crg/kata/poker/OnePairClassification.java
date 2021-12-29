@@ -8,47 +8,47 @@ class OnePairClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playOnePair(cards());
+        return hand.playOnePair(this);
     }
 
     @Override
-    Result playStraightFlush(Cards opponentCards) {
+    Result playStraightFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFourOfAKind(Cards opponentCards) {
+    Result playFourOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFullHouse(Cards opponentCards) {
+    Result playFullHouse(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFlush(Cards opponentCards) {
+    Result playFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playStraight(Cards opponentCards) {
+    Result playStraight(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playThreeOfAKind(Cards opponentCards) {
+    Result playThreeOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playTwoPairs(Cards opponentCards) {
+    Result playTwoPairs(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playOnePair(Cards opponentCards) {
-        return determineResult(opponentCards);
+    Result playOnePair(HandClassification opponentHand) {
+        return determineResult(opponentHand);
     }
 
 }

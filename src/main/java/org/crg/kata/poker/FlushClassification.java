@@ -7,21 +7,21 @@ class FlushClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playFlush(cards());
+        return hand.playFlush(this);
     }
 
     @Override
-    Result playStraightFlush(Cards opponentCards) {
+    Result playStraightFlush(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFourOfAKind(Cards opponentCards) {
+    Result playFourOfAKind(HandClassification opponentHand) {
         return opponentWins();
     }
 
     @Override
-    Result playFlush(Cards opponentCards) {
-        return cards().determineResult(opponentCards);
+    Result playFlush(HandClassification opponentHand) {
+        return determineResult(opponentHand);
     }
 }
