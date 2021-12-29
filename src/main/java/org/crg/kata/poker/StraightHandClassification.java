@@ -2,8 +2,8 @@ package org.crg.kata.poker;
 
 class StraightHandClassification extends HandClassification {
 
-    StraightHandClassification(int[] cardValues) {
-        super(cardValues);
+    StraightHandClassification(Cards cards) {
+        super(cards);
     }
 
     @Override
@@ -18,6 +18,11 @@ class StraightHandClassification extends HandClassification {
 
     @Override
     Result playFullHouse(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
+    Result playFlush(Cards opponentCards) {
         return opponentWins();
     }
 

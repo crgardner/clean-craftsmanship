@@ -3,13 +3,17 @@ package org.crg.kata.poker;
 abstract class HandClassification {
     private final Cards cards;
 
-    HandClassification(int[] cardValues) {
-        this.cards = new Cards(cardValues);
+    HandClassification(Cards cards) {
+        this.cards = cards;
     }
 
     abstract Result play(HandClassification hand);
 
     Result playFourOfAKind(Cards opponentCards) { //NOSONAR
+        return opponentLoses();
+    }
+
+    Result playFlush(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 

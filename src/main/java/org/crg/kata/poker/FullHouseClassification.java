@@ -1,8 +1,8 @@
 package org.crg.kata.poker;
 
 public class FullHouseClassification extends HandClassification {
-    public FullHouseClassification(int[] cardValues) {
-        super(cardValues);
+    public FullHouseClassification(Cards cards) {
+        super(cards);
     }
 
     @Override

@@ -7,9 +7,27 @@ class Cards {
     private static final int HAND_SIZE = 4;
 
     private final int[] cardValues;
+    private final boolean hasSameSuit;
 
-    Cards(int... cardValues) {
-        this.cardValues = cardValues;
+    public Cards(String handValue) {
+        this.cardValues = numericHandValue(handValue);
+        this.hasSameSuit = analyzeSuit(handValue);
+    }
+
+    private static int[] numericHandValue(String handValue) {
+        return Stream.of(handValue.replaceAll("[CDHS]", "")
+                                  .replace("T", "10")
+                                  .replace("J", "11")
+                                  .replace("Q", "12")
+                                  .replace("K", "13")
+                                  .replace("A", "14")
+                                  .split(" "))
+                     .mapToInt(Integer::parseInt)
+                     .toArray();
+    }
+
+    private boolean analyzeSuit(String handValue) {
+       return Stream.of(handValue.replaceAll("[0-9TJQKA]", "").split(" ")).distinct().count() == 1;
     }
 
     boolean hasNumberOfPairs(int pairCount) {
@@ -84,5 +102,9 @@ class Cards {
 
     public int[] getCardValues() {
         return cardValues;
+    }
+
+    public boolean hasSameSuit() {
+        return hasSameSuit;
     }
 }

@@ -1,8 +1,8 @@
 package org.crg.kata.poker;
 
 public class FourOfAKindClassification extends HandClassification {
-    public FourOfAKindClassification(int[] cardValues) {
-        super(cardValues);
+    public FourOfAKindClassification(Cards cards) {
+        super(cards);
     }
 
     @Override

@@ -9,7 +9,7 @@ class FourOfAKindClassifier implements HandClassifier {
 
     @Override
     public HandClassification classify(Cards cards) {
-        return hasFourOfAKind(cards) ? new FourOfAKindClassification(cards.getCardValues())
+        return hasFourOfAKind(cards) ? new FourOfAKindClassification(cards)
                                      : nextClassifier.classify(cards);
     }
 
@@ -19,11 +19,11 @@ class FourOfAKindClassifier implements HandClassifier {
 }
 
 class FullHouseClassifier implements HandClassifier {
-    private final HandClassifier nextClassifier = new StraightHandClassifier();
+    private final HandClassifier nextClassifier = new FlushClassifier();
 
     @Override
     public HandClassification classify(Cards cards) {
-        return hasFullHouse(cards) ? new FullHouseClassification(cards.getCardValues())
+        return hasFullHouse(cards) ? new FullHouseClassification(cards)
                                    : nextClassifier.classify(cards);
     }
 
@@ -32,12 +32,26 @@ class FullHouseClassifier implements HandClassifier {
     }
 }
 
+class FlushClassifier implements HandClassifier {
+    private final HandClassifier nextClassifier = new StraightHandClassifier();
+
+    @Override
+    public HandClassification classify(Cards cards) {
+        return isFlush(cards) ? new FlushClassification(cards)
+                              : nextClassifier.classify(cards);
+    }
+
+    private boolean isFlush(Cards cards) {
+        return cards.hasSameSuit();
+    }
+}
+
 class StraightHandClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new ThreeOfAKindClassifier();
 
     @Override
     public HandClassification classify(Cards cards) {
-        return isStraight(cards) ? new StraightHandClassification(cards.getCardValues())
+        return isStraight(cards) ? new StraightHandClassification(cards)
                                  : nextClassifier.classify(cards);
     }
 
@@ -52,7 +66,7 @@ class ThreeOfAKindClassifier implements HandClassifier {
 
     @Override
     public HandClassification classify(Cards cards) {
-        return isThreeOfAKind(cards) ? new ThreeOfAKindClassification(cards.getCardValues())
+        return isThreeOfAKind(cards) ? new ThreeOfAKindClassification(cards)
                                      : nextClassifier.classify(cards);
     }
 
@@ -67,11 +81,11 @@ class PairClassifier implements HandClassifier {
     @Override
     public HandClassification classify(Cards cards) {
         if (isOnePair(cards)) {
-            return new OnePairClassification(cards.getCardValues());
+            return new OnePairClassification(cards);
         }
 
         if (isTwoPair(cards)) {
-            return new TwoPairClassification(cards.getCardValues());
+            return new TwoPairClassification(cards);
         }
 
         return nextClassifier.classify(cards);
@@ -94,6 +108,6 @@ class HighCardClassifier implements HandClassifier {
 
     @Override
     public HandClassification classify(Cards cards) {
-        return new HighCardClassification(cards.getCardValues());
+        return new HighCardClassification(cards);
     }
 }

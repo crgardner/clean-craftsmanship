@@ -2,8 +2,8 @@ package org.crg.kata.poker;
 
 class TwoPairClassification extends HandClassification {
 
-    TwoPairClassification(int[] cardValues) {
-       super(cardValues);
+    TwoPairClassification(Cards cards) {
+       super(cards);
     }
 
     @Override
@@ -18,6 +18,11 @@ class TwoPairClassification extends HandClassification {
 
     @Override
     Result playFullHouse(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
+    Result playFlush(Cards opponentCards) {
         return opponentWins();
     }
 

@@ -1,24 +1,10 @@
 package org.crg.kata.poker;
 
-import java.util.stream.Stream;
-
 public class PokerHand {
     private final Cards cards;
 
     public PokerHand(String handValue) {
-//        boolean hasOneSuit = Stream.of(handValue.replaceAll("[0-9TJQKA]", "").split(" ")).distinct().count() == 1;
-
-        var numericHandValue = Stream.of(handValue.replaceAll("[CDHS]", "")
-                                                   .replace("T", "10")
-                                                   .replace("J", "11")
-                                                   .replace("Q", "12")
-                                                   .replace("K", "13")
-                                                   .replace("A", "14")
-                                                   .split(" "))
-                                      .mapToInt(Integer::parseInt)
-                                      .toArray();
-
-        cards = new Cards(numericHandValue);
+        cards = new Cards(handValue);
     }
 
     public Result compareWith(PokerHand secondHand) {

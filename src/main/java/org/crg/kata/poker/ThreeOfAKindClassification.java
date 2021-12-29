@@ -1,13 +1,18 @@
 package org.crg.kata.poker;
 
 public class ThreeOfAKindClassification extends HandClassification {
-    public ThreeOfAKindClassification(int[] cardValues) {
-        super(cardValues);
+    public ThreeOfAKindClassification(Cards cards) {
+        super(cards);
     }
 
     @Override
     Result play(HandClassification hand) {
         return hand.playThreeOfAKind(cards());
+    }
+
+    @Override
+    Result playFlush(Cards opponentCards) {
+        return opponentWins();
     }
 
     @Override
