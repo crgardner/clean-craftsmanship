@@ -12,6 +12,6 @@ public class StraightFlushClassification extends HandClassification {
 
     @Override
     Result playStraightFlush(Cards opponentCards) {
-        return cards().determineResult(opponentCards);
+        return determineResult(opponentCards);
     }
 }

@@ -47,7 +47,7 @@ class FullHouseClassifier implements HandClassifier {
 }
 
 class FlushClassifier implements HandClassifier {
-    private final HandClassifier nextClassifier = new StraightHandClassifier();
+    private final HandClassifier nextClassifier = new StraightClassifier();
 
     @Override
     public HandClassification classify(Cards cards) {
@@ -60,12 +60,12 @@ class FlushClassifier implements HandClassifier {
     }
 }
 
-class StraightHandClassifier implements HandClassifier {
+class StraightClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new ThreeOfAKindClassifier();
 
     @Override
     public HandClassification classify(Cards cards) {
-        return isStraight(cards) ? new StraightHandClassification(cards)
+        return isStraight(cards) ? new StraightClassification(cards)
                                  : nextClassifier.classify(cards);
     }
 
