@@ -4,7 +4,7 @@ interface HandClassifier {
     HandClassification classify(Cards cards);
 }
 
-class StraighFlushClassifier implements HandClassifier {
+class StraightFlushClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new FourOfAKindClassifier();
 
     @Override
@@ -42,7 +42,7 @@ class FullHouseClassifier implements HandClassifier {
     }
 
     private boolean hasFullHouse(Cards cards) {
-        return cards.hasNumberOfPairs(1) && cards.hasThreeOfOneCardRank();
+        return cards.hasNumberOfPairs(1) && cards.hasThreeOfAKind();
     }
 }
 
@@ -85,7 +85,7 @@ class ThreeOfAKindClassifier implements HandClassifier {
     }
 
     private boolean isThreeOfAKind(Cards cards) {
-        return cards.hasThreeOfOneCardRank();
+        return cards.hasThreeOfAKind();
     }
 }
 

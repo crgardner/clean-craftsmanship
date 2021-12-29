@@ -7,12 +7,12 @@ public class PokerHand {
         cards = new Cards(handValue);
     }
 
-    public Result compareWith(PokerHand secondHand) {
-        var classifier = new StraighFlushClassifier();
-        var myHand = classifier.classify(cards);
-        var yourHand = classifier.classify(secondHand.cards);
+    public Result compareWith(PokerHand opponentHand) {
+        var classifier = new StraightFlushClassifier();
+        var classifiedHand = classifier.classify(cards);
+        var classifiedOpponentHand = classifier.classify(opponentHand.cards);
 
-        return myHand.play(yourHand);
+        return classifiedHand.play(classifiedOpponentHand);
     }
 
 }

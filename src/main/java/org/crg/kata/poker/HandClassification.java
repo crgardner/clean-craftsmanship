@@ -25,7 +25,7 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playStraightHand(Cards opponentCards) {  //NOSONAR
+    Result playStraight(Cards opponentCards) {  //NOSONAR
         return opponentLoses();
     }
 
@@ -41,7 +41,7 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playHighCardHand(Cards opponentCards) { //NOSONAR
+    Result playHighCard(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }
 

@@ -27,11 +27,10 @@ class Cards {
     }
 
     private boolean analyzeSuit(String handValue) {
-       return Stream.of(handValue.replaceAll("[0-9TJQKA]", "").split(" ")).distinct().count() == 1;
-    }
-
-    boolean hasNumberOfPairs(int pairCount) {
-        return countCards().values().stream().filter(c -> c.equals(2L)).count() == pairCount;
+       return Stream.of(handValue.replaceAll("[0-9TJQKA]", "")
+                                 .split(" "))
+                    .distinct()
+                    .count() == 1;
     }
 
     private Map<Integer, Long> countCards() {
@@ -44,7 +43,7 @@ class Cards {
         return cardValueWithCount(3L);
     }
 
-    int cardValueWithCount(long cardCount) {
+    private int cardValueWithCount(long cardCount) {
         return countCards().entrySet()
                            .stream()
                            .filter(c -> c.getValue().equals(cardCount))
@@ -52,7 +51,7 @@ class Cards {
                            .findFirst().orElse(0);
     }
 
-    boolean hasThreeOfOneCardRank() {
+    boolean hasThreeOfAKind() {
         return countCards().values().stream().filter(c -> c.equals(3L)).count() == 1;
     }
 
@@ -60,7 +59,6 @@ class Cards {
         return IntStream.range(0, cardValues.length - 1)
                         .map(i -> cardValues[i] - cardValues[i + 1])
                         .allMatch(d -> d == -1);
-
     }
 
     boolean hasFourOfAKind() {
@@ -75,7 +73,7 @@ class Cards {
         return doDetermineResult(opponentCards.cardValues, HAND_SIZE);
     }
 
-    Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
+    private Result doDetermineResult(int[] opponentCardValues, int topCardPosition) {
         if (topCardPosition < 0) {
             return Result.TIE;
         }
@@ -91,6 +89,10 @@ class Cards {
         return Result.WIN;
     }
 
+    boolean hasNumberOfPairs(int pairCount) {
+        return countCards().values().stream().filter(c -> c.equals(2L)).count() == pairCount;
+    }
+
     int lowestPair() {
         return countCards().entrySet()
                            .stream()
@@ -100,11 +102,7 @@ class Cards {
                            .orElse(-1);
     }
 
-    public int[] getCardValues() {
-        return cardValues;
-    }
-
-    public boolean hasSameSuit() {
+    boolean hasSameSuit() {
         return hasSameSuit;
     }
 }

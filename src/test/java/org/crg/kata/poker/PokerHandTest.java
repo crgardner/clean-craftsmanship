@@ -3,8 +3,6 @@ package org.crg.kata.poker;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-import java.nio.channels.Pipe;
-
 import static org.crg.kata.poker.Result.*;
 
 /**
@@ -24,19 +22,19 @@ class PokerHandTest {
     private PokerHand secondHand;
     private Result result;
 
-
     @Nested
     @DisplayName("Straight flush")
     class StraightFlush {
+
         @Test
         @DisplayName("beats four of a kind")
         void beatsFourOfAKind() {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("2H 2C 2D 2S AH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -45,9 +43,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -56,9 +54,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -67,9 +65,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -78,9 +76,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -89,9 +87,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("2C 2D 4C 4D 5C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -100,9 +98,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("2C 2D 3C 4D 5C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -111,9 +109,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("2C 4D 6C 8D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -122,9 +120,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5H 6H 7H 8H 9H");
             secondHand = new PokerHand("4C 5C 6C 7C 8C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -133,9 +131,9 @@ class PokerHandTest {
             firstHand = new PokerHand("4C 5C 6C 7C 8C");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
     }
 
@@ -148,9 +146,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -159,9 +157,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -170,9 +168,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
 
@@ -182,9 +180,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -193,9 +191,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -204,9 +202,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 2D 4C 4D 5C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -215,9 +213,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 2D 3C 4D 5C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -226,9 +224,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("2C 4D 6C 8D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -237,9 +235,9 @@ class PokerHandTest {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
             secondHand = new PokerHand("4C 4D 4S 4H KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -248,9 +246,9 @@ class PokerHandTest {
             firstHand = new PokerHand("4C 4D 4S 4H KC");
             secondHand = new PokerHand("9H 9C 9D 9S AH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
     }
 
@@ -263,9 +261,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -274,9 +272,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("9H 9C 9D 9S AH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -285,9 +283,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -296,9 +294,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -307,9 +305,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2H 6D 7H TC TS");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -318,9 +316,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -329,9 +327,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2H 2S 9D 9C 9S");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -340,9 +338,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 2S 9D 9C 9S");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
     }
 
@@ -355,9 +353,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("9H 9C 9D 9S AH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -366,9 +364,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("2H 2S 9D 9C 9S");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -377,9 +375,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -388,9 +386,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -399,9 +397,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -410,9 +408,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("2H 6D 7H TC TS");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -421,9 +419,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -432,9 +430,9 @@ class PokerHandTest {
             firstHand = new PokerHand("5C 7C 8C TC KC");
             secondHand = new PokerHand("4D 7D 8D TD KD");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -443,9 +441,9 @@ class PokerHandTest {
             firstHand = new PokerHand("4D 7D 8D TD KD");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
     }
 
@@ -453,20 +451,15 @@ class PokerHandTest {
     @DisplayName("Straight")
     class Straight {
 
-        @BeforeEach
-        void init() {
-            secondHand = new PokerHand("3C 4D 5S 6H 7C");
-        }
-
         @Test
         @DisplayName("loses to straight flush")
         void losesToStraightFlush() {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -475,9 +468,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("9H 9C 9D 9S KH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -486,9 +479,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -497,9 +490,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -508,9 +501,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -519,9 +512,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -541,17 +534,18 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
         @DisplayName("ties another straight with same high card")
         void tiesAnotherStraightWithSameHighCard() {
             firstHand = new PokerHand("3S 4H 5D 6C 7S");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
             assertThat(result).isEqualTo(TIE);
         }
@@ -560,22 +554,23 @@ class PokerHandTest {
         @DisplayName("beats lower ranked straight")
         void beatsLowerRankedStraight() {
             firstHand = new PokerHand("4S 5H 6D 7C 8S");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
         @DisplayName("loses to higher ranked straight")
         void losesToHigherRankedStraight() {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
-
     }
 
     @Nested
@@ -587,9 +582,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -598,9 +593,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -609,9 +604,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -620,9 +615,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -631,9 +626,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -642,9 +637,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -653,9 +648,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2H 6D 7H TC TS");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -664,9 +659,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -675,9 +670,9 @@ class PokerHandTest {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2H 2D 2D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -686,9 +681,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 2D 2D QC KC");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
     }
@@ -702,9 +697,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -713,9 +708,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("3C 3D 3H 3S 5C");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -724,9 +719,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -735,9 +730,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -746,9 +741,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -757,9 +752,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -779,9 +774,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -823,9 +818,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 5C 5D 7C");
             secondHand = new PokerHand("3H 3S 5H 5S 7H");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -834,9 +829,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 6H");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
     }
@@ -850,9 +845,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -861,9 +856,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("9H 9C 9D 9S KH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -872,9 +867,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H AC AS");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -883,9 +878,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H AC AS");
             secondHand = new PokerHand("5C 7C 8C TC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -894,9 +889,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2D 3H 4D 5H 6D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -905,9 +900,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -916,9 +911,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("3D 3H 4D 4H 6D");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -927,9 +922,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -938,7 +933,7 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2D 6H 7D TH TD");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
             assertThat(result).isEqualTo(TIE);
         }
@@ -954,9 +949,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("5H 6H 7H 8H 9H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
         @Test
         @DisplayName("loses to four of kind")
@@ -964,9 +959,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("9H 9C 9D 9S QH");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -975,9 +970,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2C 2D TS TH TC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -986,9 +981,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2C 3D 4S 5H 6C");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -997,9 +992,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -1008,9 +1003,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2H 2S 4H 4S 5H");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -1019,9 +1014,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2H 6D 7H TC TS");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
         @Test
@@ -1030,9 +1025,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC AC");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -1041,9 +1036,9 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC AC");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
@@ -1052,11 +1047,27 @@ class PokerHandTest {
             firstHand = new PokerHand("2H 4D 8D QC KC");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
-            result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(LOSE);
+            assertFirstHandLoses();
         }
 
+    }
+
+    private void compareHands() {
+        result = firstHand.compareWith(secondHand);
+    }
+
+    private void assertFirstHandLoses() {
+        assertFirstHand(LOSE);
+    }
+
+    private void assertFirstHandWins() {
+        assertFirstHand(WIN);
+    }
+
+    private void assertFirstHand(Result expectedResult) {
+        assertThat(result).isEqualTo(expectedResult);
     }
 
 

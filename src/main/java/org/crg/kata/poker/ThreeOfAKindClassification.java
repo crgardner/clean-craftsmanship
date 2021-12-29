@@ -26,7 +26,7 @@ public class ThreeOfAKindClassification extends HandClassification {
     }
 
     @Override
-    Result playStraightHand(Cards opponentCards) {
+    Result playStraight(Cards opponentCards) {
         return opponentWins();
     }
 
