@@ -11,7 +11,22 @@ public class ThreeOfAKindClassification extends HandClassification {
     }
 
     @Override
+    Result playStraightFlush(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
+    Result playFourOfAKind(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
     Result playFlush(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
+    Result playStraightHand(Cards opponentCards) {
         return opponentWins();
     }
 

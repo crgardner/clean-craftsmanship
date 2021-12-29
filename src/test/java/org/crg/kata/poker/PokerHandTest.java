@@ -24,9 +24,135 @@ class PokerHandTest {
     private PokerHand secondHand;
     private Result result;
 
+
+    @Nested
+    @DisplayName("Straight flush")
+    class StraightFlush {
+        @Test
+        @DisplayName("beats four of a kind")
+        void beatsFourOfAKind() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("2H 2C 2D 2S AH");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats full house")
+        void beatsFullHouse() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("2C 2D TS TH TC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats flush")
+        void beatsFlush() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats straight")
+        void beatsStraight() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats three of a kind")
+        void beatsThreeOfAKind() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats two pair")
+        void beatsTwoPair() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("2C 2D 4C 4D 5C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("2C 2D 3C 4D 5C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats high card")
+        void beatsHighCard() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("2C 4D 6C 8D AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats lower ranked straight flush")
+        void beatsLowerRankedStraightFlush() {
+            firstHand = new PokerHand("5H 6H 7H 8H 9H");
+            secondHand = new PokerHand("4C 5C 6C 7C 8C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("loses to higher ranked straight flush")
+        void losesToHigherRankedStraightFlush() {
+            firstHand = new PokerHand("4C 5C 6C 7C 8C");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+    }
+
     @Nested
     @DisplayName("Four of a kind")
     class FourOfAKind {
+        @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("9H 9C 9D 9S AH");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
         @Test
         @DisplayName("beats full house")
         void beatsFullHouse() {
@@ -39,10 +165,33 @@ class PokerHandTest {
         }
 
         @Test
+        @DisplayName("beats flush")
+        void beatsFlush() {
+            firstHand = new PokerHand("9H 9C 9D 9S AH");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+
+        @Test
         @DisplayName("beats straight")
         void beatsStraight() {
             firstHand = new PokerHand("9H 9C 9D 9S KH");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats three of a kind")
+        void beatsThreeOfAKind() {
+            firstHand = new PokerHand("9H 9C 9D 9S KH");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
 
             result = firstHand.compareWith(secondHand);
 
@@ -108,6 +257,17 @@ class PokerHandTest {
     @Nested
     @DisplayName("Full house")
     class FullHouse {
+        @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("2C 2D TS TH TC");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
         @Test
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
@@ -299,6 +459,94 @@ class PokerHandTest {
         }
 
         @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to four of a kind")
+        void losesToFourOfAKind() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("9H 9C 9D 9S KH");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to full house")
+        void losesToFullHouse() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to flush")
+        void losesToFlush() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("beats three of a kind")
+        void beatsThreeOfAKind() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats two pair")
+        void beatsTwoPair() {
+            firstHand = new PokerHand("3C 4D 5S 6H 7C");
+            secondHand = new PokerHand("2C 2D 4C 4D AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
+            firstHand = new PokerHand("2C 3D 4S 5H 6C");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
+
+            var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats high card")
+        void beatsHighCard() {
+            firstHand = new PokerHand("2C 3D 4S 5H 6C");
+            secondHand = new PokerHand("2H 4D 8D QC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
         @DisplayName("ties another straight with same high card")
         void tiesAnotherStraightWithSameHighCard() {
             firstHand = new PokerHand("3S 4H 5D 6C 7S");
@@ -328,55 +576,23 @@ class PokerHandTest {
             assertThat(result).isEqualTo(LOSE);
         }
 
-        @Test
-        @DisplayName("beats high card")
-        void beatsHighCard() {
-            firstHand = new PokerHand("2C 3D 4S 5H 6C");
-            secondHand = new PokerHand("2H 4D 8D QC KC");
-
-            result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(WIN);
-        }
-
-        @Test
-        @DisplayName("beats one pair")
-        void beatsOnePair() {
-            firstHand = new PokerHand("2C 3D 4S 5H 6C");
-            secondHand = new PokerHand("2D 6H 7D TH TD");
-
-            var result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(WIN);
-        }
-
-        @Test
-        @DisplayName("loses to four of a kind")
-        void losesToFourOfAKind() {
-            firstHand = new PokerHand("3C 4D 5S 6H 7C");
-            secondHand = new PokerHand("9H 9C 9D 9S KH");
-
-            result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(LOSE);
-        }
-
-        @Test
-        @DisplayName("loses to full house")
-        void losesToFullHouse() {
-            firstHand = new PokerHand("3C 4D 5S 6H 7C");
-            secondHand = new PokerHand("2C 2D TS TH TC");
-
-            result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(LOSE);
-        }
     }
 
     @Nested
     @DisplayName("Three of a kind")
     class ThreeOfAKind {
         @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
@@ -392,6 +608,17 @@ class PokerHandTest {
         void losesToFullHouse() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
             secondHand = new PokerHand("2C 2D TS TH TC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to flush")
+        void losesToFlush() {
+            firstHand = new PokerHand("3C 3H 3D 6H 7D");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -402,7 +629,7 @@ class PokerHandTest {
         @DisplayName("loses to straight")
         void losesToStraight() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
-            secondHand = new PokerHand("3S 4H 5D 6C 7S");
+            secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
             result = firstHand.compareWith(secondHand);
 
@@ -469,6 +696,16 @@ class PokerHandTest {
     @Nested
     @DisplayName("Two pairs")
     class TwoPair {
+        @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("2C 2D 4C 4D AC");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
 
         @Test
         @DisplayName("loses to four of a kind")
@@ -493,6 +730,17 @@ class PokerHandTest {
         }
 
         @Test
+        @DisplayName("loses to flush")
+        void losesToFlush() {
+            firstHand = new PokerHand("2C 2D 4C 4D AC");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
         @DisplayName("loses to straight")
         void losesToStraight() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
@@ -501,6 +749,39 @@ class PokerHandTest {
             var result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to three of a kind")
+        void losesToThreeOfAKind() {
+            firstHand = new PokerHand("2C 2D 4C 4D 5C");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("beats one pair")
+        void beatsOnePair() {
+            firstHand = new PokerHand("2C 2D 4C 4D 5C");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
+
+            var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("beats high card")
+        void beatsHighCard() {
+            firstHand = new PokerHand("2C 2D 4C 4D 5C");
+            secondHand = new PokerHand("2H 5D 8D JC AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(WIN);
         }
 
         @Test
@@ -558,32 +839,22 @@ class PokerHandTest {
             assertThat(result).isEqualTo(LOSE);
         }
 
-        @Test
-        @DisplayName("beats one pair")
-        void beatsOnePair() {
-            firstHand = new PokerHand("2C 2D 4C 4D 5C");
-            secondHand = new PokerHand("2D 6H 7D TH TD");
-
-            var result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(WIN);
-        }
-
-        @Test
-        @DisplayName("beats high card")
-        void beatsHighCard() {
-            firstHand = new PokerHand("2C 2D 4C 4D 5C");
-            secondHand = new PokerHand("2H 5D 8D JC AC");
-
-            result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(WIN);
-        }
     }
 
     @Nested
     @DisplayName("One pair")
     class OnePair {
+        @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("2H 6D 7H TC TS");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
         @Test
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
@@ -607,12 +878,34 @@ class PokerHandTest {
         }
 
         @Test
+        @DisplayName("loses to flush")
+        void losesToFlush() {
+            firstHand = new PokerHand("2H 6D 7H AC AS");
+            secondHand = new PokerHand("5C 7C 8C TC KC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
         @DisplayName("loses to straight")
         void losesToStraight() {
             firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2D 3H 4D 5H 6D");
 
             result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
+
+        @Test
+        @DisplayName("loses to three of a kind")
+        void losesToThreeOfAKind() {
+            firstHand = new PokerHand("2H 6D 7H TC TS");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            var result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(LOSE);
         }
@@ -629,17 +922,6 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("ties same ranked one pair")
-        void tiesSameRankedOnePair() {
-            firstHand = new PokerHand("2H 6D 7H TC TS");
-            secondHand = new PokerHand("2D 6H 7D TH TD");
-
-            result = firstHand.compareWith(secondHand);
-
-            assertThat(result).isEqualTo(TIE);
-        }
-
-        @Test
         @DisplayName("beats high card")
         void beatsHighCard() {
             firstHand = new PokerHand("2H 6D 7H TC TS");
@@ -650,11 +932,32 @@ class PokerHandTest {
             assertThat(result).isEqualTo(WIN);
         }
 
+        @Test
+        @DisplayName("ties same ranked one pair")
+        void tiesSameRankedOnePair() {
+            firstHand = new PokerHand("2H 6D 7H TC TS");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(TIE);
+        }
+
     }
 
     @Nested
     @DisplayName("High card")
     class HighCard {
+        @Test
+        @DisplayName("loses to straight flush")
+        void losesToStraightFlush() {
+            firstHand = new PokerHand("2H 4D 8D QC KC");
+            secondHand = new PokerHand("5H 6H 7H 8H 9H");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
+        }
         @Test
         @DisplayName("loses to four of kind")
         void losesToFourOfAKind() {
@@ -686,7 +989,17 @@ class PokerHandTest {
             result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(LOSE);
+        }
 
+        @Test
+        @DisplayName("loses to three of a kind")
+        void losesToThreeOfAKind() {
+            firstHand = new PokerHand("2H 4D 8D QC KC");
+            secondHand = new PokerHand("3C 3H 3D 6H 7D");
+
+            var result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
         }
 
         @Test
@@ -731,6 +1044,17 @@ class PokerHandTest {
             result = firstHand.compareWith(secondHand);
 
             assertThat(result).isEqualTo(WIN);
+        }
+
+        @Test
+        @DisplayName("loses to higher ranked high card")
+        void losesToHigherRankedHighCard() {
+            firstHand = new PokerHand("2H 4D 8D QC KC");
+            secondHand = new PokerHand("2H 5D 8D JC AC");
+
+            result = firstHand.compareWith(secondHand);
+
+            assertThat(result).isEqualTo(LOSE);
         }
 
     }

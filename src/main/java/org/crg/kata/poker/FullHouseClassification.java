@@ -11,6 +11,11 @@ public class FullHouseClassification extends HandClassification {
     }
 
     @Override
+    Result playStraightFlush(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
     Result playFourOfAKind(Cards opponentCards) {
         return opponentWins();
     }

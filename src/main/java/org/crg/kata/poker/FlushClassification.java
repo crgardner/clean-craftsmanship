@@ -11,6 +11,16 @@ class FlushClassification extends HandClassification {
     }
 
     @Override
+    Result playStraightFlush(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
+    Result playFourOfAKind(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
     Result playFlush(Cards opponentCards) {
         return cards().determineResult(opponentCards);
     }

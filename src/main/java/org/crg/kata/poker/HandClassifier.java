@@ -4,6 +4,20 @@ interface HandClassifier {
     HandClassification classify(Cards cards);
 }
 
+class StraighFlushClassifier implements HandClassifier {
+    private final HandClassifier nextClassifier = new FourOfAKindClassifier();
+
+    @Override
+    public HandClassification classify(Cards cards) {
+        return isStraightFlush(cards) ? new StraightFlushClassification(cards)
+                                      : nextClassifier.classify(cards);
+    }
+
+    private boolean isStraightFlush(Cards cards) {
+        return cards.isStraight() && cards.hasSameSuit();
+    }
+}
+
 class FourOfAKindClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new FullHouseClassifier();
 

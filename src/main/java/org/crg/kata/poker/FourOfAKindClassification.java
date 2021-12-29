@@ -11,6 +11,11 @@ public class FourOfAKindClassification extends HandClassification {
     }
 
     @Override
+    Result playStraightFlush(Cards opponentCards) {
+        return opponentWins();
+    }
+
+    @Override
     Result playFourOfAKind(Cards opponentCards) {
         return cards().fourOfOneCardRank() < opponentCards.fourOfOneCardRank() ?
                 opponentWins() : opponentLoses();

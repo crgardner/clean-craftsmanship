@@ -9,6 +9,10 @@ abstract class HandClassification {
 
     abstract Result play(HandClassification hand);
 
+    Result playStraightFlush(Cards opponentCards) { //NOSONAR
+        return opponentLoses();
+    }
+
     Result playFourOfAKind(Cards opponentCards) { //NOSONAR
         return opponentLoses();
     }

@@ -8,7 +8,7 @@ public class PokerHand {
     }
 
     public Result compareWith(PokerHand secondHand) {
-        var classifier = new FourOfAKindClassifier();
+        var classifier = new StraighFlushClassifier();
         var myHand = classifier.classify(cards);
         var yourHand = classifier.classify(secondHand.cards);
 
