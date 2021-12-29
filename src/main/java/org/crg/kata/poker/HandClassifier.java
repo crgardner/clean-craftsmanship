@@ -52,10 +52,8 @@ class ThreeOfAKindClassifier implements HandClassifier {
 
     @Override
     public HandClassification classify(Cards cards) {
-        if (isThreeOfAKind(cards)) {
-            return new ThreeOfAKindClassification(cards.getCardValues());
-        }
-        return nextClassifier.classify(cards);
+        return isThreeOfAKind(cards) ? new ThreeOfAKindClassification(cards.getCardValues())
+                                     : nextClassifier.classify(cards);
     }
 
     private boolean isThreeOfAKind(Cards cards) {
