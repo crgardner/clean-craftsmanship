@@ -8,7 +8,7 @@ class TwoPairClassification extends HandClassification {
 
     @Override
     Result play(HandClassification hand) {
-        return hand.playTwoPairs(this);
+        return hand.playTwoPair(this);
     }
 
     @Override
@@ -42,7 +42,7 @@ class TwoPairClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(HandClassification opponentHand) {
+    Result playTwoPair(HandClassification opponentHand) {
         if (cards().lowestPair() > opponentHand.cards().lowestPair()) {
             return opponentLoses();
         }

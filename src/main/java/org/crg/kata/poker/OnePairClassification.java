@@ -42,7 +42,7 @@ class OnePairClassification extends HandClassification {
     }
 
     @Override
-    Result playTwoPairs(HandClassification opponentHand) {
+    Result playTwoPair(HandClassification opponentHand) {
         return opponentWins();
     }
 

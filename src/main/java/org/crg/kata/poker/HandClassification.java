@@ -33,7 +33,7 @@ abstract class HandClassification {
         return opponentLoses();
     }
 
-    Result playTwoPairs(HandClassification opponentHand) { //NOSONAR
+    Result playTwoPair(HandClassification opponentHand) { //NOSONAR
         return opponentLoses();
     }
 
