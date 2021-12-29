@@ -82,4 +82,7 @@ class Cards {
                            .orElse(-1);
     }
 
+    public int[] getCardValues() {
+        return cardValues;
+    }
 }

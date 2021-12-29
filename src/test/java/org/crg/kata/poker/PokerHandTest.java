@@ -32,7 +32,7 @@ class PokerHandTest {
         @DisplayName("beats full house")
         void beatsFullHouse() {
             firstHand = new PokerHand("9H 9C 9D 9S AH");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -112,7 +112,7 @@ class PokerHandTest {
         @Test
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
+            firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("9H 9C 9D 9S AH");
 
             result = firstHand.compareWith(secondHand);
@@ -123,7 +123,7 @@ class PokerHandTest {
         @Test
         @DisplayName("beats straight")
         void beatsStraight() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
+            firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("3C 4D 5S 6H 7C");
 
             result = firstHand.compareWith(secondHand);
@@ -134,7 +134,7 @@ class PokerHandTest {
         @Test
         @DisplayName("beats two pair")
         void beatsTwoPair() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
+            firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2C 2D 4C 4D AC");
 
             result = firstHand.compareWith(secondHand);
@@ -145,8 +145,8 @@ class PokerHandTest {
         @Test
         @DisplayName("beats one pair")
         void beatsOnePair() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
-            secondHand = new PokerHand("2H 6D 7H 10C 10S");
+            firstHand = new PokerHand("2C 2D TS TH TC");
+            secondHand = new PokerHand("2H 6D 7H TC TS");
 
             result = firstHand.compareWith(secondHand);
 
@@ -156,7 +156,7 @@ class PokerHandTest {
         @Test
         @DisplayName("beats high card")
         void beatsHighCard() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
+            firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2H 4D 8D QC KC");
 
             result = firstHand.compareWith(secondHand);
@@ -167,7 +167,7 @@ class PokerHandTest {
         @Test
         @DisplayName("beats lower ranked full house")
         void beatsLowerRankedFullHouse() {
-            firstHand = new PokerHand("2C 2D 10S 10H 10C");
+            firstHand = new PokerHand("2C 2D TS TH TC");
             secondHand = new PokerHand("2H 2S 9D 9C 9S");
 
             result = firstHand.compareWith(secondHand);
@@ -179,7 +179,7 @@ class PokerHandTest {
         @DisplayName("loses to higher ranked full house")
         void losesToHigherRankedFullHouse() {
             firstHand = new PokerHand("2H 2S 9D 9C 9S");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -241,7 +241,7 @@ class PokerHandTest {
         @DisplayName("beats one pair")
         void beatsOnePair() {
             firstHand = new PokerHand("2C 3D 4S 5H 6C");
-            secondHand = new PokerHand("2D 6H 7D 10H 10D");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
 
             var result = firstHand.compareWith(secondHand);
 
@@ -263,7 +263,7 @@ class PokerHandTest {
         @DisplayName("loses to full house")
         void losesToFullHouse() {
             firstHand = new PokerHand("3C 4D 5S 6H 7C");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -278,7 +278,7 @@ class PokerHandTest {
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -289,7 +289,7 @@ class PokerHandTest {
         @DisplayName("loses to full house")
         void losesToFullHouse() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -322,7 +322,7 @@ class PokerHandTest {
         @DisplayName("beats one pair")
         void beatsOnePair() {
             firstHand = new PokerHand("3C 3H 3D 6H 7D");
-            secondHand = new PokerHand("2H 6D 7H 10C 10S");
+            secondHand = new PokerHand("2H 6D 7H TC TS");
 
             result = firstHand.compareWith(secondHand);
 
@@ -383,7 +383,7 @@ class PokerHandTest {
         @DisplayName("loses to full house")
         void losesToFullHouse() {
             firstHand = new PokerHand("2C 2D 4C 4D AC");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -460,7 +460,7 @@ class PokerHandTest {
         @DisplayName("beats one pair")
         void beatsOnePair() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
-            secondHand = new PokerHand("2D 6H 7D 10H 10D");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
 
             var result = firstHand.compareWith(secondHand);
 
@@ -485,7 +485,7 @@ class PokerHandTest {
         @Test
         @DisplayName("loses to four of a kind")
         void losesToFourOfAKind() {
-            firstHand = new PokerHand("2H 6D 7H 10C 10S");
+            firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("9H 9C 9D 9S KH");
 
             result = firstHand.compareWith(secondHand);
@@ -497,7 +497,7 @@ class PokerHandTest {
         @DisplayName("loses to full house")
         void losesToFullHouse() {
             firstHand = new PokerHand("2H 6D 7H AC AS");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -507,7 +507,7 @@ class PokerHandTest {
         @Test
         @DisplayName("loses to straight")
         void losesToStraight() {
-            firstHand = new PokerHand("2H 6D 7H 10C 10S");
+            firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2D 3H 4D 5H 6D");
 
             result = firstHand.compareWith(secondHand);
@@ -518,7 +518,7 @@ class PokerHandTest {
         @Test
         @DisplayName("loses to two pair")
         void losesToTwoPair() {
-            firstHand = new PokerHand("2H 6D 7H 10C 10S");
+            firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("3D 3H 4D 4H 6D");
 
             result = firstHand.compareWith(secondHand);
@@ -529,8 +529,8 @@ class PokerHandTest {
         @Test
         @DisplayName("ties same ranked one pair")
         void tiesSameRankedOnePair() {
-            firstHand = new PokerHand("2H 6D 7H 10C 10S");
-            secondHand = new PokerHand("2D 6H 7D 10H 10D");
+            firstHand = new PokerHand("2H 6D 7H TC TS");
+            secondHand = new PokerHand("2D 6H 7D TH TD");
 
             result = firstHand.compareWith(secondHand);
 
@@ -540,7 +540,7 @@ class PokerHandTest {
         @Test
         @DisplayName("beats high card")
         void beatsHighCard() {
-            firstHand = new PokerHand("2H 6D 7H 10C 10S");
+            firstHand = new PokerHand("2H 6D 7H TC TS");
             secondHand = new PokerHand("2H 5D 8D JC AC");
 
             result = firstHand.compareWith(secondHand);
@@ -568,7 +568,7 @@ class PokerHandTest {
         @DisplayName("loses to full house")
         void losesToFullHouse() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
-            secondHand = new PokerHand("2C 2D 10S 10H 10C");
+            secondHand = new PokerHand("2C 2D TS TH TC");
 
             result = firstHand.compareWith(secondHand);
 
@@ -602,7 +602,7 @@ class PokerHandTest {
         @DisplayName("loses to one pair")
         void losesToOnePair() {
             firstHand = new PokerHand("2H 4D 8D QC KC");
-            secondHand = new PokerHand("2H 6D 7H 10C 10S");
+            secondHand = new PokerHand("2H 6D 7H TC TS");
 
             result = firstHand.compareWith(secondHand);
 

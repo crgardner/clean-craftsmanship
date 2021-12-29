@@ -1,22 +1,20 @@
 package org.crg.kata.poker;
 
 interface HandClassifier {
-    HandClassification classify(int[] cardValues);
+    HandClassification classify(Cards cards);
 }
 
 class FourOfAKindClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new FullHouseClassifier();
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        if (hasFourOfAKind(cardValues)) {
-            return new FourOfAKindClassification(cardValues);
-        }
-        return nextClassifier.classify(cardValues);
+    public HandClassification classify(Cards cards) {
+        return hasFourOfAKind(cards) ? new FourOfAKindClassification(cards.getCardValues())
+                                     : nextClassifier.classify(cards);
     }
 
-    private boolean hasFourOfAKind(int[] cardValues) {
-        return new Cards(cardValues).hasFourOfAKind();
+    private boolean hasFourOfAKind(Cards cards) {
+        return cards.hasFourOfAKind();
     }
 }
 
@@ -24,16 +22,12 @@ class FullHouseClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new StraightHandClassifier();
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        if (hasFullHouse(cardValues)) {
-            return new FullHouseClassification(cardValues);
-        }
-        return nextClassifier.classify(cardValues);
+    public HandClassification classify(Cards cards) {
+        return hasFullHouse(cards) ? new FullHouseClassification(cards.getCardValues())
+                                   : nextClassifier.classify(cards);
     }
 
-    private boolean hasFullHouse(int[] cardValues) {
-        var cards = new Cards(cardValues);
-
+    private boolean hasFullHouse(Cards cards) {
         return cards.hasNumberOfPairs(1) && cards.hasThreeOfOneCardRank();
     }
 }
@@ -42,15 +36,13 @@ class StraightHandClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new ThreeOfAKindClassifier();
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        if (isStraight(cardValues)) {
-            return new StraightHandClassification(cardValues);
-        }
-        return nextClassifier.classify(cardValues);
+    public HandClassification classify(Cards cards) {
+        return isStraight(cards) ? new StraightHandClassification(cards.getCardValues())
+                                 : nextClassifier.classify(cards);
     }
 
-    private boolean isStraight(int[] cardValues) {
-       return new Cards(cardValues).isStraight();
+    private boolean isStraight(Cards cards) {
+       return cards.isStraight();
     }
 
 }
@@ -59,15 +51,15 @@ class ThreeOfAKindClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new PairClassifier();
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        if (isThreeOfAKind(cardValues)) {
-            return new ThreeOfAKindClassification(cardValues);
+    public HandClassification classify(Cards cards) {
+        if (isThreeOfAKind(cards)) {
+            return new ThreeOfAKindClassification(cards.getCardValues());
         }
-        return nextClassifier.classify(cardValues);
+        return nextClassifier.classify(cards);
     }
 
-    private boolean isThreeOfAKind(int[] cardValues) {
-        return new Cards(cardValues).hasThreeOfOneCardRank();
+    private boolean isThreeOfAKind(Cards cards) {
+        return cards.hasThreeOfOneCardRank();
     }
 }
 
@@ -75,36 +67,35 @@ class PairClassifier implements HandClassifier {
     private final HandClassifier nextClassifier = new HighCardClassifier();
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        if (isOnePair(cardValues)) {
-            return new OnePairClassification(cardValues);
+    public HandClassification classify(Cards cards) {
+        if (isOnePair(cards)) {
+            return new OnePairClassification(cards.getCardValues());
         }
 
-        if (isTwoPair(cardValues)) {
-            return new TwoPairClassification(cardValues);
+        if (isTwoPair(cards)) {
+            return new TwoPairClassification(cards.getCardValues());
         }
 
-        return nextClassifier.classify(cardValues);
+        return nextClassifier.classify(cards);
     }
 
-    private boolean isTwoPair(int[] cardValues) {
-        return hasPairs(2, cardValues);
-
+    private boolean isTwoPair(Cards cards) {
+        return hasPairs(2, cards);
     }
 
-    private boolean isOnePair(int[] cardValues) {
-        return hasPairs(1, cardValues);
+    private boolean isOnePair(Cards cards) {
+        return hasPairs(1, cards);
     }
 
-    private boolean hasPairs(int pairCount, int[] cardValues) {
-        return new Cards(cardValues).hasNumberOfPairs(pairCount);
+    private boolean hasPairs(int pairCount, Cards cards) {
+        return cards.hasNumberOfPairs(pairCount);
     }
 }
 
 class HighCardClassifier implements HandClassifier {
 
     @Override
-    public HandClassification classify(int[] cardValues) {
-        return new HighCardClassification(cardValues);
+    public HandClassification classify(Cards cards) {
+        return new HighCardClassification(cards.getCardValues());
     }
 }
