@@ -48,6 +48,14 @@ class OnePairClassification extends HandClassification {
 
     @Override
     Result playOnePair(HandClassification opponentHand) {
+        if (cards().lowestPair() < opponentHand.cards().lowestPair()) {
+            return opponentWins();
+        }
+
+        if (cards().lowestPair() > opponentHand.cards().lowestPair()) {
+            return opponentLoses();
+        }
+
         return determineResult(opponentHand);
     }
 

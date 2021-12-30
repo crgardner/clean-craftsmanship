@@ -780,8 +780,8 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("ties same ranked two pair with same remaining cards")
-        void tiesSameRankedTwoPairWithSameRemainingCards() {
+        @DisplayName("ties same ranked two pair with same kicker")
+        void tiesSameRankedTwoPairWithSameKicker() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 5H");
 
@@ -791,30 +791,30 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("beats two pair with same high pair but lower ranked low pair")
-        void beatsTwoPairWithSameHighPairButLowerRankedLowPair() {
+        @DisplayName("beats same ranked high pair but lower ranked low pair")
+        void beatsSameRankedHighPairButLowerRankedLowPair() {
             firstHand = new PokerHand("3C 3D 4C 4D 5C");
-            secondHand = new PokerHand("2H 2S 4H 4S 6H");
+            secondHand = new PokerHand("2H 2S 4H 4S 5H");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
-        @DisplayName("beats lower ranked two pair")
-        void beatsLowerRankedTwoPair() {
+        @DisplayName("beats lower ranked high pair")
+        void beatsLowerRankedHighPair() {
             firstHand = new PokerHand("2C 2D 5C 5D 7C");
             secondHand = new PokerHand("2H 2S 4H 4S 7H");
 
-            var result = firstHand.compareWith(secondHand);
+            compareHands();
 
-            assertThat(result).isEqualTo(WIN);
+            assertFirstHandWins();
         }
 
         @Test
-        @DisplayName("loses to higher ranked two pair")
-        void losesToHigherRankedTwoPair() {
+        @DisplayName("loses same ranked high pair with higher ranked low pair")
+        void losesToSameRankedHighPairWithHigherRankedLowPair() {
             firstHand = new PokerHand("2C 2D 5C 5D 7C");
             secondHand = new PokerHand("3H 3S 5H 5S 7H");
 
@@ -824,8 +824,19 @@ class PokerHandTest {
         }
 
         @Test
-        @DisplayName("loses to same ranked two pair with higher ranked remaining card")
-        void losesToSameRankedTwoPairWithHigherRankedRemainingCard() {
+        @DisplayName("loses higher ranked high pair")
+        void losesToHigherRankedHighPair() {
+            firstHand = new PokerHand("2C 2D 5C 5D 7C");
+            secondHand = new PokerHand("3H 3S 6H 6S 7H");
+
+            compareHands();
+
+            assertFirstHandLoses();
+        }
+
+        @Test
+        @DisplayName("loses to same ranked two pair with higher ranked kicker")
+        void losesToSameRankedTwoPairWithHigherRankedKicker() {
             firstHand = new PokerHand("2C 2D 4C 4D 5C");
             secondHand = new PokerHand("2H 2S 4H 4S 6H");
 
@@ -833,7 +844,6 @@ class PokerHandTest {
 
             assertFirstHandLoses();
         }
-
     }
 
     @Nested
@@ -936,6 +946,50 @@ class PokerHandTest {
             compareHands();
 
             assertThat(result).isEqualTo(TIE);
+        }
+
+        @Test
+        @DisplayName("beats lower ranked one pair")
+        void beatsLowerRankedOnePair() {
+            firstHand = new PokerHand("3H 3D 4H 8C TS");
+            secondHand = new PokerHand("2D 2H 7D 9H AD");
+
+            compareHands();
+
+            assertFirstHandWins();
+        }
+
+        @Test
+        @DisplayName("loses to higher ranked one pair")
+        void losesToHigherRankedOnePair() {
+            firstHand = new PokerHand("2D 2H 7D 9H AD");
+            secondHand = new PokerHand("3H 3D 4H 8C TS");
+
+            compareHands();
+
+            assertFirstHandLoses();
+        }
+
+        @Test
+        @DisplayName("beats one pair with lower ranked kicker")
+        void beatsOnePairWithLowerRankedKicker() {
+            firstHand = new PokerHand("3H 3D 4H 8C AS");
+            secondHand = new PokerHand("3C 3S 4D 8H TD");
+
+            compareHands();
+
+            assertFirstHandWins();
+        }
+
+        @Test
+        @DisplayName("loses to one pair with higher ranked kicker")
+        void losesToOnePairWtihHigherRankedKicker() {
+            firstHand = new PokerHand("3C 3S 4D 8H TD");
+            secondHand = new PokerHand("3H 3D 4H 8C AS");
+
+            compareHands();
+
+            assertFirstHandLoses();
         }
 
     }
